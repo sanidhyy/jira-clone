@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint && eslint .",
+    "lint:fix": "next lint --fix && eslint . --fix",
+    "format": "prettier --check . --config .prettierrc.mjs",
+    "format:fix": "prettier --write . --config .prettierrc.mjs"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
