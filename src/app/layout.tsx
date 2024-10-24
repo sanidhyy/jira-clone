@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'antialiased min-h-screen')}>{children}</body>
+      <body className={cn(inter.className, 'min-h-screen antialiased')}>{children}</body>
     </html>
   );
 };
