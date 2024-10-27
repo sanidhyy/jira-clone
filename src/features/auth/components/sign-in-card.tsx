@@ -12,15 +12,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
-const signInFormSchema = z.object({
-  email: z.string().trim().email({
-    message: 'Invalid email.',
-  }),
-  password: z.string().min(1, 'Password is required.'),
-});
+import { useLogin } from '@/features/auth/api/use-login';
+import { signInFormSchema } from '@/features/auth/schema';
 
 export const SignInCard = () => {
+  const { mutate: login } = useLogin();
+
   const signInForm = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
     defaultValues: {
@@ -30,7 +27,9 @@ export const SignInCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof signInFormSchema>) => {
-    console.log(values);
+    login({
+      json: values,
+    });
   };
 
   return (
