@@ -16,7 +16,7 @@ import { useRegister } from '@/features/auth/api/use-register';
 import { signUpFormSchema } from '@/features/auth/schema';
 
 export const SignUpCard = () => {
-  const { mutate: register } = useRegister();
+  const { mutate: register, isPending } = useRegister();
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -56,6 +56,7 @@ export const SignUpCard = () => {
         <Form {...signUpForm}>
           <form onSubmit={signUpForm.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
+              disabled={isPending}
               name="name"
               control={signUpForm.control}
               render={({ field }) => (
@@ -70,6 +71,7 @@ export const SignUpCard = () => {
             />
 
             <FormField
+              disabled={isPending}
               name="email"
               control={signUpForm.control}
               render={({ field }) => (
@@ -84,6 +86,7 @@ export const SignUpCard = () => {
             />
 
             <FormField
+              disabled={isPending}
               name="password"
               control={signUpForm.control}
               render={({ field }) => (
@@ -97,7 +100,7 @@ export const SignUpCard = () => {
               )}
             />
 
-            <Button type="submit" disabled={false} size="lg" className="w-full">
+            <Button type="submit" disabled={isPending} size="lg" className="w-full">
               Register
             </Button>
           </form>
@@ -109,11 +112,11 @@ export const SignUpCard = () => {
       </div>
 
       <CardContent className="flex flex-col gap-y-4 p-7">
-        <Button disabled={false} variant="secondary" size="lg" className="w-full">
+        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
           <FcGoogle className="mr-2 size-5" /> Login with Google
         </Button>
 
-        <Button disabled={false} variant="secondary" size="lg" className="w-full">
+        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
           <FaGithub className="mr-2 size-5" /> Login with GitHub
         </Button>
       </CardContent>

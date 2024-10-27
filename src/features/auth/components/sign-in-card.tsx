@@ -16,7 +16,7 @@ import { useLogin } from '@/features/auth/api/use-login';
 import { signInFormSchema } from '@/features/auth/schema';
 
 export const SignInCard = () => {
-  const { mutate: login } = useLogin();
+  const { mutate: login, isPending } = useLogin();
 
   const signInForm = useForm<z.infer<typeof signInFormSchema>>({
     resolver: zodResolver(signInFormSchema),
@@ -46,6 +46,7 @@ export const SignInCard = () => {
         <Form {...signInForm}>
           <form onSubmit={signInForm.handleSubmit(onSubmit)} className="space-y-4">
             <FormField
+              disabled={isPending}
               name="email"
               control={signInForm.control}
               render={({ field }) => (
@@ -60,6 +61,7 @@ export const SignInCard = () => {
             />
 
             <FormField
+              disabled={isPending}
               name="password"
               control={signInForm.control}
               render={({ field }) => (
@@ -73,7 +75,7 @@ export const SignInCard = () => {
               )}
             />
 
-            <Button type="submit" disabled={false} size="lg" className="w-full">
+            <Button type="submit" disabled={isPending} size="lg" className="w-full">
               Login
             </Button>
           </form>
@@ -85,11 +87,11 @@ export const SignInCard = () => {
       </div>
 
       <CardContent className="flex flex-col gap-y-4 p-7">
-        <Button disabled={false} variant="secondary" size="lg" className="w-full">
+        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
           <FcGoogle className="mr-2 size-5" /> Login with Google
         </Button>
 
-        <Button disabled={false} variant="secondary" size="lg" className="w-full">
+        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
           <FaGithub className="mr-2 size-5" /> Login with GitHub
         </Button>
       </CardContent>
