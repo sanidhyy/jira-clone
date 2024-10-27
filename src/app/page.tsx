@@ -3,14 +3,12 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
-import { Button } from '@/components/ui/button';
 import { useCurrent } from '@/features/auth/api/use-current';
-import { useLogout } from '@/features/auth/api/use-logout';
+import { UserButton } from '@/features/auth/components/user-button';
 
 const HomePage = () => {
   const router = useRouter();
   const { data, isLoading } = useCurrent();
-  const { mutate: logout } = useLogout();
 
   useEffect(() => {
     if (!data && !isLoading) {
@@ -25,10 +23,9 @@ const HomePage = () => {
   if (!data) return null;
 
   return (
-    <main>
-      <p>Only visible to logged in users.</p>
-      <Button onClick={() => logout()}>Log out</Button>
-    </main>
+    <div>
+      <UserButton />
+    </div>
   );
 };
 
