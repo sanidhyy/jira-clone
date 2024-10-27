@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
+import { Navbar } from '@/components/navbar';
 import { Sidebar } from '@/components/sidebar';
-import { Navbar } from '@/components/ui/navbar';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
