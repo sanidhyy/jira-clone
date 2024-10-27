@@ -1,45 +1,33 @@
+'use client';
+
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useCurrent } from '@/features/auth/api/use-current';
+import { useLogout } from '@/features/auth/api/use-logout';
 
 const HomePage = () => {
+  const router = useRouter();
+  const { data, isLoading } = useCurrent();
+  const { mutate: logout } = useLogout();
+
+  useEffect(() => {
+    if (!data && !isLoading) {
+      router.push('/sign-in');
+    }
+  }, [data]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!data) return null;
+
   return (
-    <main className="space-x-2 space-y-2">
-      <Button>Primary</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="muted">Muted</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="tertiary">Tertiary</Button>
-      <Button disabled={true}>Disabled</Button>
-
-      <hr />
-
-      <Button>Default</Button>
-      <Button size="icon">😊</Button>
-      <Button size="lg">Large</Button>
-      <Button size="sm">Small</Button>
-      <Button size="xs">Extra Small</Button>
-
-      <hr />
-
-      <Input placeholder="Type something here..." className="w-[400px]" />
-
-      <hr />
-
-      <Select>
-        <SelectTrigger className="w-[400px]">
-          <SelectValue placeholder="Choose a fruit" />
-        </SelectTrigger>
-
-        <SelectContent>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="mango">Mango</SelectItem>
-          <SelectItem value="orange">Orange</SelectItem>
-        </SelectContent>
-      </Select>
+    <main>
+      <p>Only visible to logged in users.</p>
+      <Button onClick={() => logout()}>Log out</Button>
     </main>
   );
 };
