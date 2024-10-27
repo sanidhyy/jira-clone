@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 
+import { QueryProvider } from '@/components/query-provider';
 import { cn } from '@/lib/utils';
 
 import './globals.css';
@@ -18,7 +19,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'min-h-screen antialiased')}>{children}</body>
+      <body className={cn(inter.className, 'min-h-screen antialiased')}>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 };
