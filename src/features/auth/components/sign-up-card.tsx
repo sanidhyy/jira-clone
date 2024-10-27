@@ -12,16 +12,11 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-
-const signUpFormSchema = z.object({
-  name: z.string().trim().min(1, 'Full name is required.'),
-  email: z.string().trim().email({
-    message: 'Invalid email.',
-  }),
-  password: z.string().min(8, 'Password must be atleast 8 characters.').max(256, 'Password cannot exceed 256 characters.'),
-});
+import { useRegister } from '@/features/auth/api/use-register';
+import { signUpFormSchema } from '@/features/auth/schema';
 
 export const SignUpCard = () => {
+  const { mutate: register } = useRegister();
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -32,7 +27,9 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof signUpFormSchema>) => {
-    console.log(values);
+    register({
+      json: values,
+    });
   };
 
   return (
