@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
 import { Sidebar } from '@/components/sidebar';
+import { Navbar } from '@/components/ui/navbar';
 
 const DashboardLayout = ({ children }: PropsWithChildren) => {
   return (
@@ -10,9 +11,9 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
           <Sidebar />
         </div>
 
-        <div className="lg:pl-[264px]">
+        <div className="lg:pl-[264px] w-full">
           <div className="mx-auto max-w-screen-xl h-full">
-            {/* TODO: Navbar */}
+            <Navbar />
 
             <main className="h-full py-8 px-6 flex flex-col">{children}</main>
           </div>

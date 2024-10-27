@@ -39,8 +39,9 @@ export const Navigation = () => {
         const Icon = isActive ? route.activeIcon : route.icon;
 
         return (
-          <Link key={route.href} href={route.href}>
-            <div
+          <li key={route.href}>
+            <Link
+              href={route.href}
               className={cn(
                 'flex items-center gap-2.5 p-2.5 rounded-md font-medium hover:text-primary transition text-neutral-500',
                 isActive && 'bg-white shadow-sm hover:opacity-100 text-primary',
@@ -48,8 +49,8 @@ export const Navigation = () => {
             >
               <Icon className="size-5 text-neutral-500" />
               {route.label}
-            </div>
-          </Link>
+            </Link>
+          </li>
         );
       })}
     </ul>
