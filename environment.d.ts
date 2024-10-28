@@ -10,6 +10,7 @@ declare global {
       // appwrite project and key
       NEXT_PUBLIC_APPWRITE_ENDPOINT: string;
       NEXT_PUBLIC_APPWRITE_PROJECT: string;
+      NEXT_PUBLIC_APPWRITE_IMAGES_BUCKET_ID: string;
       NEXT_APPWRITE_KEY: string;
 
       // appwrite database ids
