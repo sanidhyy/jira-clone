@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { InferRequestType, InferResponseType } from 'hono';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 import { client } from '@/lib/hono';
 
@@ -15,6 +16,8 @@ export const useLogin = () => {
     mutationFn: async ({ json }) => {
       const response = await client.api.auth.login['$post']({ json });
 
+      if (!response.ok) throw new Error('Email or Password is incorrect!');
+
       return await response.json();
     },
     onSuccess: () => {
@@ -23,6 +26,9 @@ export const useLogin = () => {
       queryClient.invalidateQueries({
         queryKey: ['current'],
       });
+    },
+    onError: () => {
+      toast.error('Email or Password is incorrect!');
     },
   });
 

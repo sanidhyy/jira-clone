@@ -27,9 +27,19 @@ export const SignUpCard = () => {
   });
 
   const onSubmit = (values: z.infer<typeof signUpFormSchema>) => {
-    register({
-      json: values,
-    });
+    register(
+      {
+        json: values,
+      },
+      {
+        onSuccess: () => {
+          signUpForm.reset();
+        },
+        onError: () => {
+          signUpForm.resetField('password');
+        },
+      },
+    );
   };
 
   return (

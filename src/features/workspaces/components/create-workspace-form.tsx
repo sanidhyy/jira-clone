@@ -27,9 +27,16 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
   });
 
   const onSubmit = (values: z.infer<typeof createWorkspaceSchema>) => {
-    createWorkspace({
-      json: values,
-    });
+    createWorkspace(
+      {
+        json: values,
+      },
+      {
+        onSuccess: () => {
+          createWorkspaceForm.reset();
+        },
+      },
+    );
   };
 
   return (

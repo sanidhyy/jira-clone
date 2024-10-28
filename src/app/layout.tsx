@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import type { PropsWithChildren } from 'react';
 
 import { QueryProvider } from '@/components/query-provider';
+import { Toaster } from '@/components/ui/sonner';
 import { cn } from '@/lib/utils';
 
 import './globals.css';
@@ -20,7 +21,11 @@ const RootLayout = ({ children }: Readonly<PropsWithChildren>) => {
   return (
     <html lang="en">
       <body className={cn(inter.className, 'min-h-screen antialiased')}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <Toaster theme="light" richColors closeButton />
+
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
