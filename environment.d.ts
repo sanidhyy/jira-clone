@@ -7,10 +7,14 @@ declare global {
       // app base url
       NEXT_PUBLIC_APP_BASE_URL: string;
 
-      // appwrite
+      // appwrite project and key
       NEXT_PUBLIC_APPWRITE_ENDPOINT: string;
       NEXT_PUBLIC_APPWRITE_PROJECT: string;
       NEXT_APPWRITE_KEY: string;
+
+      // appwrite database ids
+      NEXT_PUBLIC_APPWRITE_DATABASE_ID: string;
+      NEXT_PUBLIC_APPWRITE_WORKSPACES_ID: string;
     }
   }
 }
