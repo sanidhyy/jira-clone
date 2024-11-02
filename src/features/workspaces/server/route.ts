@@ -6,6 +6,7 @@ import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/conf
 import { MemberRole } from '@/features/members/types';
 import { createWorkspaceSchema } from '@/features/workspaces/schema';
 import { sessionMiddleware } from '@/lib/session-middleware';
+import { generateInviteCode } from '@/lib/utils';
 
 const app = new Hono()
   .get('/', sessionMiddleware, async (ctx) => {
@@ -66,6 +67,7 @@ const app = new Hono()
       name,
       userId: user.$id,
       imageId: uploadedImageId,
+      inviteCode: generateInviteCode(6),
     });
 
     await databases.createDocument(DATABASE_ID, MEMBERS_ID, ID.unique(), {
