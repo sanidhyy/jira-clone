@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-import { ID, Models, Query } from 'node-appwrite';
+import { ID, type Models, Query } from 'node-appwrite';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config/db';
 import { MemberRole } from '@/features/members/types';

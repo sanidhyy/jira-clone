@@ -1,8 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { Client } from 'node-appwrite';
-import { Account } from 'node-appwrite';
+import { Account, Client } from 'node-appwrite';
 
 import { AUTH_COOKIE } from './constants';
 
