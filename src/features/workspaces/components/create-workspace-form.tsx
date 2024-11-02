@@ -17,6 +17,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input';
 import { useCreateWorkspace } from '@/features/workspaces/api/use-create-workspace';
 import { createWorkspaceSchema } from '@/features/workspaces/schema';
+import { cn } from '@/lib/utils';
 
 interface CreateWorkspaceFormProps {
   onCancel?: () => void;
@@ -155,9 +156,17 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
             <DottedSeparator className="py-7" />
 
             <div className="flex items-center justify-between">
-              <Button disabled={isPending} type="button" size="lg" variant="secondary" onClick={onCancel}>
+              <Button
+                disabled={isPending}
+                type="button"
+                size="lg"
+                variant="secondary"
+                onClick={onCancel}
+                className={cn(!onCancel && 'invisible')}
+              >
                 Cancel
               </Button>
+
               <Button disabled={isPending} type="submit" size="lg">
                 Create workspace
               </Button>
