@@ -121,13 +121,13 @@ export const CreateWorkspaceForm = ({ onCancel }: CreateWorkspaceFormProps) => {
 
                       <div className="flex flex-col">
                         <p className="text-sm">Workspace Icon</p>
-                        <p className="text-xs text-muted-foreground">JPG, PNG, SVG or JPEG, max 1MB</p>
+                        <p className="text-xs text-muted-foreground">JPG, PNG, or JPEG, max 1MB</p>
 
                         <input
                           type="file"
                           className="hidden"
                           onChange={handleImageChange}
-                          accept=".jpg, .png, .jpeg, .svg"
+                          accept=".jpg, .png, .jpeg"
                           ref={inputRef}
                           disabled={isPending}
                         />
