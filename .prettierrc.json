@@ -3,6 +3,7 @@
   "semi": true,
   "singleQuote": true,
   "printWidth": 140,
+  "tabWidth": 2,
   "importOrder": ["<THIRD_PARTY_MODULES>", "^@/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true

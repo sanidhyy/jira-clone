@@ -24,6 +24,7 @@ export default {
   plugins: [mixedPlugin],
   semi: true,
   singleQuote: true,
+  tabWidth: 2,
   printWidth: 140,
   importOrder: ['<THIRD_PARTY_MODULES>', '^@/(.*)$', '^[./]'],
   importOrderSeparation: true,

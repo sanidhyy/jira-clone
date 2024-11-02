@@ -5,6 +5,7 @@
   "editor.formatOnPaste": false,
   "prettier.useEditorConfig": false,
   "prettier.useTabs": false,
+  "editor.tabSize": 2,
   "prettier.configPath": ".prettierrc.json",
 
   // fix unknown at rule tailwind
