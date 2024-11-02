@@ -1,11 +1,13 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
 import { ID, type Models, Query } from 'node-appwrite';
+import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/config/db';
 import { MemberRole } from '@/features/members/types';
 import { getMember } from '@/features/members/utils';
 import { createWorkspaceSchema, updateWorkspaceSchema } from '@/features/workspaces/schema';
+import { Workspace } from '@/features/workspaces/types';
 import { sessionMiddleware } from '@/lib/session-middleware';
 import { generateInviteCode } from '@/lib/utils';
 
@@ -162,6 +164,47 @@ const app = new Hono()
     });
 
     return ctx.json({ data: workspace });
-  });
+  })
+  .post(
+    '/:workspaceId/join',
+    sessionMiddleware,
+    zValidator(
+      'json',
+      z.object({
+        code: z.string(),
+      }),
+    ),
+    async (ctx) => {
+      const { workspaceId } = ctx.req.param();
+      const { code } = ctx.req.valid('json');
+
+      const databases = ctx.get('databases');
+      const user = ctx.get('user');
+
+      const member = await getMember({
+        databases,
+        workspaceId,
+        userId: user.$id,
+      });
+
+      if (member) {
+        return ctx.json({ error: 'Already a member.' }, 400);
+      }
+
+      const workspace = await databases.getDocument<Workspace>(DATABASE_ID, WORKSPACES_ID, workspaceId);
+
+      if (workspace.inviteCode !== code) {
+        return ctx.json({ error: 'Invalid invite code.' }, 400);
+      }
+
+      await databases.createDocument(DATABASE_ID, MEMBERS_ID, ID.unique(), {
+        workspaceId,
+        userId: user.$id,
+        role: MemberRole.MEMBER,
+      });
+
+      return ctx.json({ data: workspace });
+    },
+  );
 
 export default app;
