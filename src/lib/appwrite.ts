@@ -23,9 +23,6 @@ export async function createSessionClient() {
     get storage() {
       return new Storage(client);
     },
-    get users() {
-      return new Users(client);
-    },
   };
 }
 
@@ -38,6 +35,9 @@ export async function createAdminClient() {
   return {
     get account() {
       return new Account(client);
+    },
+    get users() {
+      return new Users(client);
     },
   };
 }
