@@ -18,11 +18,11 @@ export const useDeleteMember = () => {
 
       return await response.json();
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       toast.success('Member deleted.');
 
       queryClient.invalidateQueries({
-        queryKey: ['members'],
+        queryKey: ['members', data.workspaceId],
       });
     },
     onError: (error) => {

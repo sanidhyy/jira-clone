@@ -99,7 +99,7 @@ const app = new Hono()
 
     await databases.deleteDocument(DATABASE_ID, MEMBERS_ID, memberId);
 
-    return ctx.json({ data: { $id: memberToDelete.$id } });
+    return ctx.json({ data: { $id: memberToDelete.$id, workspaceId: memberToDelete.workspaceId } });
   })
   .patch(
     '/:memberId',
@@ -157,7 +157,7 @@ const app = new Hono()
 
       await databases.updateDocument(DATABASE_ID, MEMBERS_ID, memberId, { role });
 
-      return ctx.json({ data: { $id: memberToUpdate.$id } });
+      return ctx.json({ data: { $id: memberToUpdate.$id, workspaceId: memberToUpdate.workspaceId } });
     },
   );
 

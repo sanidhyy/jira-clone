@@ -94,6 +94,7 @@ export const MembersList = () => {
                   >
                     Set as Administrator
                   </DropdownMenuItem>
+
                   <DropdownMenuItem
                     className="font-medium"
                     onClick={() => handleUpdateMember(member.$id, MemberRole.MEMBER)}
@@ -101,6 +102,7 @@ export const MembersList = () => {
                   >
                     Set as Member
                   </DropdownMenuItem>
+
                   <DropdownMenuItem
                     className="font-medium text-amber-700"
                     onClick={() => handleDeleteMember(member.$id)}

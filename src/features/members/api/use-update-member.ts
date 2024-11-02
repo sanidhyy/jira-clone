@@ -18,11 +18,11 @@ export const useUpdateMember = () => {
 
       return await response.json();
     },
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       toast.success('Member updated.');
 
       queryClient.invalidateQueries({
-        queryKey: ['members'],
+        queryKey: ['members', data.workspaceId],
       });
     },
     onError: (error) => {
