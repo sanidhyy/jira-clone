@@ -6,7 +6,7 @@ import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/conf
 import { getMember } from '@/features/members/utils';
 import { createSessionClient } from '@/lib/appwrite';
 
-import { Workspace } from './types';
+import type { Workspace } from './types';
 
 export const getWorkspaces = async () => {
   try {

@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 
 import { getCurrent } from '@/features/auth/queries';
 import { JoinWorkspaceForm } from '@/features/workspaces/components/join-workspace-form';
@@ -19,7 +19,7 @@ const WorkspaceIdJoinPage = async ({ params }: WorkspaceIdJoinPageProps) => {
     workspaceId: params.workspaceId,
   });
 
-  if (!initialValues) redirect('/');
+  if (!initialValues) notFound();
 
   return (
     <div className="w-full lg:max-w-xl">
