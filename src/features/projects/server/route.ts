@@ -1,6 +1,6 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-import { ID, Query } from 'node-appwrite';
+import { ID, Models, Query } from 'node-appwrite';
 import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, PROJECTS_ID } from '@/config/db';
@@ -56,6 +56,7 @@ const app = new Hono()
     async (ctx) => {
       const user = ctx.get('user');
       const databases = ctx.get('databases');
+      const storage = ctx.get('storage');
 
       const { workspaceId } = ctx.req.valid('query');
 
@@ -74,7 +75,28 @@ const app = new Hono()
         Query.orderDesc('$createdAt'),
       ]);
 
-      return ctx.json({ data: projects });
+      const projectsWithImages: Models.Document[] = await Promise.all(
+        projects.documents.map(async (project) => {
+          let imageUrl: string | undefined = undefined;
+
+          if (project.imageId) {
+            const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, project.imageId);
+            imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
+          }
+
+          return {
+            ...project,
+            imageUrl,
+          };
+        }),
+      );
+
+      return ctx.json({
+        data: {
+          documents: projectsWithImages,
+          total: projects.total,
+        },
+      });
     },
   );
 
