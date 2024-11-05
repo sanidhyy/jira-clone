@@ -61,7 +61,13 @@ const app = new Hono()
     let uploadedImageId: string | undefined = undefined;
 
     if (image instanceof File) {
-      const file = await storage.createFile(IMAGES_BUCKET_ID, ID.unique(), image);
+      const fileExt = image.name.split('.').at(-1) ?? 'png';
+      const fileName = `${ID.unique()}.${fileExt}`;
+
+      const renamedImage = new File([image], fileName, {
+        type: image.type,
+      });
+      const file = await storage.createFile(IMAGES_BUCKET_ID, ID.unique(), renamedImage);
 
       uploadedImageId = file.$id;
     } else {
