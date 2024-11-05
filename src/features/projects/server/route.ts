@@ -38,7 +38,6 @@ const app = new Hono()
 
     const project = await databases.createDocument(DATABASE_ID, PROJECTS_ID, ID.unique(), {
       name,
-      userId: user.$id,
       imageId: uploadedImageId,
       workspaceId,
     });
