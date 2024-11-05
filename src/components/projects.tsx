@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { RiAddCircleFill } from 'react-icons/ri';
 
 import { useGetProjects } from '@/features/projects/api/use-get-projects';
+import { useCreateProjectModal } from '@/features/projects/hooks/use-create-project-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +14,7 @@ export const Projects = () => {
   const projectId = null; // TODO: Fetch project id using hook
   const workspaceId = useWorkspaceId();
 
+  const { open } = useCreateProjectModal();
   const { data: projects } = useGetProjects({
     workspaceId,
   });
@@ -22,7 +24,7 @@ export const Projects = () => {
       <div className="flex items-center justify-between">
         <p className="text-xs uppercase text-neutral-500">Projects</p>
 
-        <button onClick={() => {}}>
+        <button onClick={open}>
           <RiAddCircleFill className="size-5 text-neutral-500 cursor-pointer hover:opacity-75 transition" />
         </button>
       </div>

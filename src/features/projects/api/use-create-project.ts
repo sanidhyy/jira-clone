@@ -23,6 +23,7 @@ export const useCreateProject = () => {
 
       queryClient.invalidateQueries({
         queryKey: ['projects', data.workspaceId],
+        exact: true,
       });
     },
     onError: (error) => {
