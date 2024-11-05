@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useDeleteProject } from '@/features/projects/api/use-delete-project';
 import { useUpdateProject } from '@/features/projects/api/use-update-project';
 import { updateProjectSchema } from '@/features/projects/schema';
 import type { Project } from '@/features/projects/types';
@@ -33,7 +34,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
   const [DeleteDialog, confirmDelete] = useConfirm('Delete project', 'This action cannot be undone.', 'destructive');
 
   const { mutate: updateProject, isPending: isUpdatingProject } = useUpdateProject();
-  // const { mutate: deleteWorkspace, isPending: isDeletingWorkspace } = useDeleteWorkspace();
+  const { mutate: deleteProject, isPending: isDeletingProject } = useDeleteProject();
 
   const updateProjectForm = useForm<z.infer<typeof updateProjectSchema>>({
     resolver: zodResolver(updateProjectSchema),
@@ -71,19 +72,19 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
 
     if (!ok) return;
 
-    /* deleteWorkspace(
+    deleteProject(
       {
-        param: { workspaceId: initialValues.$id },
+        param: { projectId: initialValues.$id },
       },
       {
-        onSuccess: () => {
-          window.location.href = '/';
+        onSuccess: ({ data }) => {
+          window.location.href = `/workspaces/${data.workspaceId}`;
         },
       },
-    ); */
+    );
   };
 
-  const isPending = isUpdatingProject;
+  const isPending = isUpdatingProject || isDeletingProject;
 
   return (
     <div className="flex flex-col gap-y-4">
