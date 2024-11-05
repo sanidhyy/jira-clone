@@ -5,7 +5,8 @@ import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, PROJECTS_ID } from '@/config/db';
 import { getMember } from '@/features/members/utils';
-import { createProjectSchema } from '@/features/projects/schema';
+import { createProjectSchema, updateProjectSchema } from '@/features/projects/schema';
+import type { Project } from '@/features/projects/types';
 import { sessionMiddleware } from '@/lib/session-middleware';
 
 const app = new Hono()
@@ -104,6 +105,53 @@ const app = new Hono()
         },
       });
     },
-  );
+  )
+  .patch('/:projectId', sessionMiddleware, zValidator('form', updateProjectSchema), async (ctx) => {
+    const databases = ctx.get('databases');
+    const storage = ctx.get('storage');
+    const user = ctx.get('user');
+
+    const { projectId } = ctx.req.param();
+    const { name, image } = ctx.req.valid('form');
+
+    const existingProject = await databases.getDocument<Project>(DATABASE_ID, PROJECTS_ID, projectId);
+
+    const member = await getMember({
+      databases,
+      workspaceId: existingProject.workspaceId,
+      userId: user.$id,
+    });
+
+    if (!member) {
+      return ctx.json(
+        {
+          error: 'Unauthorized.',
+        },
+        401,
+      );
+    }
+
+    let uploadedImageId: string | undefined = undefined;
+
+    if (image instanceof File) {
+      const fileExt = image.name.split('.').at(-1) ?? 'png';
+      const fileName = `${ID.unique()}.${fileExt}`;
+
+      const renamedImage = new File([image], fileName, {
+        type: image.type,
+      });
+
+      const file = await storage.createFile(IMAGES_BUCKET_ID, ID.unique(), renamedImage);
+
+      uploadedImageId = file.$id;
+    }
+
+    const project = await databases.updateDocument(DATABASE_ID, PROJECTS_ID, projectId, {
+      name,
+      imageId: uploadedImageId,
+    });
+
+    return ctx.json({ data: project });
+  });
 
 export default app;
