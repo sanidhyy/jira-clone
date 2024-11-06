@@ -23,7 +23,7 @@ export const useCreateTask = () => {
 
       queryClient.invalidateQueries({
         queryKey: ['tasks', data.workspaceId],
-        exact: true,
+        exact: false,
       });
     },
     onError: (error) => {
