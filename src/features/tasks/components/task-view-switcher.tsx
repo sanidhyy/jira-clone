@@ -2,6 +2,7 @@
 
 import { Loader2, PlusIcon } from 'lucide-react';
 import { useQueryState } from 'nuqs';
+import { useCallback } from 'react';
 
 import { DottedSeparator } from '@/components/dotted-separator';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useGetTasks } from '@/features/tasks/api/use-get-tasks';
 import { useCreateTaskModal } from '@/features/tasks/hooks/use-create-task-modal';
 import { useTaskFilters } from '@/features/tasks/hooks/use-task-filters';
+import type { TaskStatus } from '@/features/tasks/types';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 
 import { columns } from './columns';
@@ -26,6 +28,10 @@ export const TaskViewSwitcher = () => {
 
   const { open } = useCreateTaskModal();
   const { data: tasks, isLoading: isLoadingTasks } = useGetTasks({ workspaceId, status, assigneeId, projectId, dueDate });
+
+  const onKanbanChange = useCallback((tasks: { $id: string; status: TaskStatus; position: number }[]) => {
+    console.log(tasks);
+  }, []);
 
   return (
     <Tabs defaultValue={view} onValueChange={setView} className="flex-1 w-full border rounded-lg">
@@ -66,7 +72,7 @@ export const TaskViewSwitcher = () => {
             </TabsContent>
 
             <TabsContent value="kanban" className="mt-0">
-              <DataKanban data={tasks?.documents ?? []} />
+              <DataKanban data={tasks?.documents ?? []} onChange={onKanbanChange} />
             </TabsContent>
 
             <TabsContent value="calendar" className="mt-0">
