@@ -1,9 +1,11 @@
 import { addMonths, format, getDay, parse, startOfWeek, subMonths } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+import { CalendarIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
+import { Button } from '@/components/ui/button';
 import type { Task } from '@/features/tasks/types';
 
 import './data-calendar.css';
@@ -24,6 +26,30 @@ const localizer = dateFnsLocalizer({
 interface DataCalendarProps {
   data: Task[];
 }
+
+interface CustomToolbarProps {
+  date: Date;
+  onNavigate: (action: 'PREV' | 'NEXT' | 'TODAY') => void;
+}
+
+const CustomToolbar = ({ date, onNavigate }: CustomToolbarProps) => {
+  return (
+    <div className="flex mb-4 gap-x-2 items-center w-full lg:w-auto justify-center lg:justify-start">
+      <Button title="Previous Month" onClick={() => onNavigate('PREV')} variant="secondary" size="icon">
+        <ChevronLeft className="size-4" />
+      </Button>
+
+      <div className="flex items-center border border-input rounded-md px-3 py-2 h-8 justify-center w-full lg:w-auto">
+        <CalendarIcon className="size-4 mr-2" />
+        <p className="text-sm">{format(date, 'MMMM yyyy')}</p>
+      </div>
+
+      <Button title="Next Month" onClick={() => onNavigate('NEXT')} variant="secondary" size="icon">
+        <ChevronRight className="size-4" />
+      </Button>
+    </div>
+  );
+};
 
 export const DataCalendar = ({ data }: DataCalendarProps) => {
   const [value, setValue] = useState(data.length > 0 ? new Date(data[0].dueDate) : new Date());
@@ -62,6 +88,7 @@ export const DataCalendar = ({ data }: DataCalendarProps) => {
         eventWrapper: ({ event }) => (
           <EventCard id={event.id} title={event.title} assignee={event.assignee} project={event.project} status={event.status} />
         ),
+        toolbar: () => <CustomToolbar date={value} onNavigate={handleNavigate} />,
       }}
     />
   );
