@@ -12,6 +12,7 @@
     "format:fix": "prettier --write . --config .prettierrc.mjs"
   },
   "dependencies": {
+    "@hello-pangea/dnd": "^17.0.0",
     "@hono/zod-validator": "^0.4.1",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-avatar": "^1.1.1",
