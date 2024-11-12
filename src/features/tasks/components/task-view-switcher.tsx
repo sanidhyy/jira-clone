@@ -13,6 +13,7 @@ import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 
 import { columns } from './columns';
 import { DataFilters } from './data-filters';
+import { DataKanban } from './data-kanban';
 import { DataTable } from './data-table';
 
 export const TaskViewSwitcher = () => {
@@ -44,7 +45,7 @@ export const TaskViewSwitcher = () => {
             </TabsTrigger>
           </TabsList>
 
-          <Button onClick={open} size="sm" className="w-full lg:w-auto">
+          <Button onClick={() => open()} size="sm" className="w-full lg:w-auto">
             <PlusIcon className="size-4" />
             New
           </Button>
@@ -65,7 +66,7 @@ export const TaskViewSwitcher = () => {
             </TabsContent>
 
             <TabsContent value="kanban" className="mt-0">
-              {JSON.stringify(tasks)}
+              <DataKanban data={tasks?.documents ?? []} />
             </TabsContent>
 
             <TabsContent value="calendar" className="mt-0">

@@ -20,12 +20,13 @@ import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { cn } from '@/lib/utils';
 
 interface CreateTaskFormProps {
+  initialStatus?: TaskStatus | null;
   onCancel?: () => void;
   projectOptions: { id: string; name: string; imageUrl: string }[];
   memberOptions: { id: string; name: string }[];
 }
 
-export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: CreateTaskFormProps) => {
+export const CreateTaskForm = ({ initialStatus, onCancel, memberOptions, projectOptions }: CreateTaskFormProps) => {
   const workspaceId = useWorkspaceId();
 
   const { mutate: createTask, isPending } = useCreateTask();
@@ -38,7 +39,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
       assigneeId: undefined,
       description: '',
       projectId: undefined,
-      status: undefined,
+      status: initialStatus ?? undefined,
       workspaceId,
     },
   });
