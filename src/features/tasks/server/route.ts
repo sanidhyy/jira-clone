@@ -1,13 +1,13 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-import { ID, Query } from 'node-appwrite';
+import { ID, Models, Query } from 'node-appwrite';
 import { z } from 'zod';
 
-import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from '@/config/db';
+import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from '@/config/db';
 import { getMember } from '@/features/members/utils';
 import { Project } from '@/features/projects/types';
 import { createTaskSchema } from '@/features/tasks/schema';
-import { TaskStatus } from '@/features/tasks/types';
+import { type Task, TaskStatus } from '@/features/tasks/types';
 import { createAdminClient } from '@/lib/appwrite';
 import { sessionMiddleware } from '@/lib/session-middleware';
 
@@ -29,6 +29,7 @@ const app = new Hono()
     async (ctx) => {
       const { users } = await createAdminClient();
       const databases = ctx.get('databases');
+      const storage = ctx.get('storage');
       const user = ctx.get('user');
 
       const { workspaceId, projectId, assigneeId, status, search, dueDate } = ctx.req.valid('query');
@@ -70,7 +71,7 @@ const app = new Hono()
         query.push(Query.search('name', search));
       }
 
-      const tasks = await databases.listDocuments(DATABASE_ID, TASKS_ID, query);
+      const tasks = await databases.listDocuments<Task>(DATABASE_ID, TASKS_ID, query);
 
       const projectIds = tasks.documents.map((task) => task.projectId);
       const assigneeIds = tasks.documents.map((task) => task.assigneeId);
@@ -99,16 +100,28 @@ const app = new Hono()
         }),
       );
 
-      const populatedTasks = tasks.documents.map((task) => {
-        const project = projects.documents.find((project) => project.$id === task.projectId);
-        const assignee = assignees.find((assignee) => assignee.$id === task.assigneeId);
+      const populatedTasks: (Models.Document & Task)[] = await Promise.all(
+        tasks.documents.map(async (task) => {
+          const project = projects.documents.find((project) => project.$id === task.projectId);
+          const assignee = assignees.find((assignee) => assignee.$id === task.assigneeId);
 
-        return {
-          ...task,
-          project,
-          assignee,
-        };
-      });
+          let imageUrl: string | undefined = undefined;
+
+          if (project?.imageId) {
+            const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, project.imageId);
+            imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
+          }
+
+          return {
+            ...task,
+            project: {
+              ...project,
+              imageUrl,
+            },
+            assignee,
+          };
+        }),
+      );
 
       return ctx.json({
         data: {
