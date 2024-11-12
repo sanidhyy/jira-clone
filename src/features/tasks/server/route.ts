@@ -168,6 +168,36 @@ const app = new Hono()
 
     return ctx.json({ data: task });
   })
+  .patch('/:taskId', sessionMiddleware, zValidator('json', createTaskSchema.partial()), async (ctx) => {
+    const user = ctx.get('user');
+    const databases = ctx.get('databases');
+
+    const { name, status, description, projectId, dueDate, assigneeId } = ctx.req.valid('json');
+    const { taskId } = ctx.req.param();
+
+    const existingTask = await databases.getDocument<Task>(DATABASE_ID, TASKS_ID, taskId);
+
+    const member = await getMember({
+      databases,
+      workspaceId: existingTask.workspaceId,
+      userId: user.$id,
+    });
+
+    if (!member) {
+      return ctx.json({ error: 'Unauthorized.' }, 401);
+    }
+
+    const task = await databases.updateDocument(DATABASE_ID, TASKS_ID, taskId, {
+      name,
+      status,
+      projectId,
+      dueDate,
+      assigneeId,
+      description,
+    });
+
+    return ctx.json({ data: task });
+  })
   .delete('/:taskId', sessionMiddleware, async (ctx) => {
     const user = ctx.get('user');
     const databases = ctx.get('databases');

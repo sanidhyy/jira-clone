@@ -1,8 +1,10 @@
 import { ExternalLink, PencilIcon, Trash } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useDeleteTask } from '@/features/tasks/api/use-delete-task';
+import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
 
 interface TaskActionsProps {
@@ -11,6 +13,8 @@ interface TaskActionsProps {
 }
 
 export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskActionsProps>) => {
+  const router = useRouter();
+  const workspaceId = useWorkspaceId();
   const [ConfirmDialog, confirm] = useConfirm('Delete task', 'This action cannot be undone.', 'destructive');
 
   const { mutate: deleteTask, isPending } = useDeleteTask();
@@ -20,6 +24,14 @@ export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskA
     if (!ok) return;
 
     deleteTask({ param: { taskId: id } });
+  };
+
+  const onOpenTask = () => {
+    router.push(`/workspaces/${workspaceId}/tasks/${id}`);
+  };
+
+  const onOpenProject = () => {
+    router.push(`/workspaces/${workspaceId}/projects/${projectId}`);
   };
 
   return (
@@ -32,12 +44,12 @@ export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskA
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem onClick={() => {}} disabled={isPending} className="font-medium p-[10px]">
+          <DropdownMenuItem onClick={onOpenTask} disabled={isPending} className="font-medium p-[10px]">
             <ExternalLink className="size-4 mr-2 stroke-2" />
             Task Details
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={() => {}} disabled={isPending} className="font-medium p-[10px]">
+          <DropdownMenuItem onClick={onOpenProject} disabled={isPending} className="font-medium p-[10px]">
             <ExternalLink className="size-4 mr-2 stroke-2" />
             Open Project
           </DropdownMenuItem>
