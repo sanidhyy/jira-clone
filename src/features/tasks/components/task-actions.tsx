@@ -4,6 +4,7 @@ import type { PropsWithChildren } from 'react';
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { useDeleteTask } from '@/features/tasks/api/use-delete-task';
+import { useEditTaskModal } from '@/features/tasks/hooks/use-edit-task-modal';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 import { useConfirm } from '@/hooks/use-confirm';
 
@@ -15,6 +16,8 @@ interface TaskActionsProps {
 export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskActionsProps>) => {
   const router = useRouter();
   const workspaceId = useWorkspaceId();
+
+  const { open } = useEditTaskModal();
   const [ConfirmDialog, confirm] = useConfirm('Delete task', 'This action cannot be undone.', 'destructive');
 
   const { mutate: deleteTask, isPending } = useDeleteTask();
@@ -54,7 +57,7 @@ export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskA
             Open Project
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={() => {}} disabled={isPending} className="font-medium p-[10px]">
+          <DropdownMenuItem onClick={() => open(id)} disabled={isPending} className="font-medium p-[10px]">
             <PencilIcon className="size-4 mr-2 stroke-2" />
             Edit Task
           </DropdownMenuItem>

@@ -13,33 +13,26 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { MemberAvatar } from '@/features/members/components/member-avatar';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
-import { useCreateTask } from '@/features/tasks/api/use-create-task';
+import { useUpdateTask } from '@/features/tasks/api/use-update-task';
 import { createTaskSchema } from '@/features/tasks/schema';
-import { TaskStatus } from '@/features/tasks/types';
-import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
+import { type Task, TaskStatus } from '@/features/tasks/types';
 import { cn } from '@/lib/utils';
 
-interface CreateTaskFormProps {
+interface EditTaskFormProps {
   onCancel?: () => void;
   projectOptions: { id: string; name: string; imageUrl: string }[];
   memberOptions: { id: string; name: string }[];
+  initialValues: Task;
 }
 
-export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: CreateTaskFormProps) => {
-  const workspaceId = useWorkspaceId();
+export const EditTaskForm = ({ onCancel, memberOptions, projectOptions, initialValues }: EditTaskFormProps) => {
+  const { mutate: createTask, isPending } = useUpdateTask();
 
-  const { mutate: createTask, isPending } = useCreateTask();
-
-  const createTaskForm = useForm<z.infer<typeof createTaskSchema>>({
-    resolver: zodResolver(createTaskSchema),
+  const editTaskForm = useForm<z.infer<typeof createTaskSchema>>({
+    resolver: zodResolver(createTaskSchema.omit({ workspaceId: true, description: true })),
     defaultValues: {
-      name: '',
-      dueDate: undefined,
-      assigneeId: undefined,
-      description: '',
-      projectId: undefined,
-      status: undefined,
-      workspaceId,
+      ...initialValues,
+      dueDate: initialValues.dueDate ? new Date(initialValues.dueDate) : undefined,
     },
   });
 
@@ -47,12 +40,11 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
     createTask(
       {
         json: values,
+        param: { taskId: initialValues.$id },
       },
       {
-        onSuccess: ({ data }) => {
-          createTaskForm.reset();
-
-          // TODO: Redirect to new task
+        onSuccess: () => {
+          onCancel?.();
         },
       },
     );
@@ -61,7 +53,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
   return (
     <Card className="size-full border-none shadow-none">
       <CardHeader className="flex p-7">
-        <CardTitle className="text-xl font-bold">Create a new task</CardTitle>
+        <CardTitle className="text-xl font-bold">Edit a task</CardTitle>
       </CardHeader>
 
       <div className="px-7">
@@ -69,12 +61,12 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
       </div>
 
       <CardContent className="p-7">
-        <Form {...createTaskForm}>
-          <form onSubmit={createTaskForm.handleSubmit(onSubmit)}>
+        <Form {...editTaskForm}>
+          <form onSubmit={editTaskForm.handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-y-4">
               <FormField
                 disabled={isPending}
-                control={createTaskForm.control}
+                control={editTaskForm.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
@@ -91,7 +83,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
 
               <FormField
                 disabled={isPending}
-                control={createTaskForm.control}
+                control={editTaskForm.control}
                 name="dueDate"
                 render={({ field }) => (
                   <FormItem>
@@ -108,7 +100,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
 
               <FormField
                 disabled={isPending}
-                control={createTaskForm.control}
+                control={editTaskForm.control}
                 name="assigneeId"
                 render={({ field }) => (
                   <FormItem>
@@ -138,7 +130,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
 
               <FormField
                 disabled={isPending}
-                control={createTaskForm.control}
+                control={editTaskForm.control}
                 name="status"
                 render={({ field }) => (
                   <FormItem>
@@ -165,7 +157,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
 
               <FormField
                 disabled={isPending}
-                control={createTaskForm.control}
+                control={editTaskForm.control}
                 name="projectId"
                 render={({ field }) => (
                   <FormItem>
@@ -211,7 +203,7 @@ export const CreateTaskForm = ({ onCancel, memberOptions, projectOptions }: Crea
               </Button>
 
               <Button disabled={isPending} type="submit" size="lg">
-                Create Task
+                Save Changes
               </Button>
             </div>
           </form>
