@@ -106,6 +106,44 @@ const app = new Hono()
       });
     },
   )
+  .get('/:projectId', sessionMiddleware, async (ctx) => {
+    const user = ctx.get('user');
+    const databases = ctx.get('databases');
+    const storage = ctx.get('storage');
+
+    const { projectId } = ctx.req.param();
+
+    const project = await databases.getDocument<Project>(DATABASE_ID, PROJECTS_ID, projectId);
+
+    const member = await getMember({
+      databases,
+      workspaceId: project.workspaceId,
+      userId: user.$id,
+    });
+
+    if (!member) {
+      return ctx.json(
+        {
+          error: 'Unauthorized.',
+        },
+        401,
+      );
+    }
+
+    let imageUrl: string | undefined = undefined;
+
+    if (project.imageId) {
+      const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, project.imageId);
+      imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
+    }
+
+    return ctx.json({
+      data: {
+        ...project,
+        imageUrl,
+      },
+    });
+  })
   .patch('/:projectId', sessionMiddleware, zValidator('form', updateProjectSchema), async (ctx) => {
     const databases = ctx.get('databases');
     const storage = ctx.get('storage');
