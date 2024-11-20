@@ -126,6 +126,19 @@ const app = new Hono()
       },
     });
   })
+  .get('/:workspaceId/info', sessionMiddleware, async (ctx) => {
+    const databases = ctx.get('databases');
+    const { workspaceId } = ctx.req.param();
+
+    const workspace = await databases.getDocument<Workspace>(DATABASE_ID, WORKSPACES_ID, workspaceId);
+
+    return ctx.json({
+      data: {
+        $id: workspace.$id,
+        name: workspace.name,
+      },
+    });
+  })
   .patch('/:workspaceId', sessionMiddleware, zValidator('form', updateWorkspaceSchema), async (ctx) => {
     const databases = ctx.get('databases');
     const storage = ctx.get('storage');
