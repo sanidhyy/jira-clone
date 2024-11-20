@@ -7,7 +7,7 @@ import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, WORKSPACES_ID } from '@/conf
 import { MemberRole } from '@/features/members/types';
 import { getMember } from '@/features/members/utils';
 import { createWorkspaceSchema, updateWorkspaceSchema } from '@/features/workspaces/schema';
-import { Workspace } from '@/features/workspaces/types';
+import type { Workspace } from '@/features/workspaces/types';
 import { sessionMiddleware } from '@/lib/session-middleware';
 import { generateInviteCode } from '@/lib/utils';
 
@@ -88,6 +88,43 @@ const app = new Hono()
     });
 
     return ctx.json({ data: workspace });
+  })
+  .get('/:workspaceId', sessionMiddleware, async (ctx) => {
+    const user = ctx.get('user');
+    const databases = ctx.get('databases');
+    const storage = ctx.get('storage');
+    const { workspaceId } = ctx.req.param();
+
+    const member = await getMember({
+      databases,
+      workspaceId,
+      userId: user.$id,
+    });
+
+    if (!member) {
+      return ctx.json(
+        {
+          error: 'Unauthorized.',
+        },
+        401,
+      );
+    }
+
+    const workspace = await databases.getDocument<Workspace>(DATABASE_ID, WORKSPACES_ID, workspaceId);
+
+    let imageUrl: string | undefined = undefined;
+
+    if (workspace.imageId) {
+      const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, workspace.imageId);
+      imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
+    }
+
+    return ctx.json({
+      data: {
+        ...workspace,
+        imageUrl,
+      },
+    });
   })
   .patch('/:workspaceId', sessionMiddleware, zValidator('form', updateWorkspaceSchema), async (ctx) => {
     const databases = ctx.get('databases');

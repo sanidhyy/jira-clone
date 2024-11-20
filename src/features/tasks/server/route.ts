@@ -5,7 +5,7 @@ import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from '@/config/db';
 import { getMember } from '@/features/members/utils';
-import { Project } from '@/features/projects/types';
+import type { Project } from '@/features/projects/types';
 import { createTaskSchema } from '@/features/tasks/schema';
 import { type Task, TaskStatus } from '@/features/tasks/types';
 import { createAdminClient } from '@/lib/appwrite';

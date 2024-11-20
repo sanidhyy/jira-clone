@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import { TaskStatus } from '@/features/tasks/types';
+import type { TaskStatus } from '@/features/tasks/types';
 import { client } from '@/lib/hono';
 
 interface useGetTasksProps {
