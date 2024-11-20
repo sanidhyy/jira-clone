@@ -114,7 +114,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                   <div className="flex flex-col gap-y-2">
                     <div className="flex items-center gap-x-5">
                       {field.value ? (
-                        <div className="size-[72px] relative rounded-md overflow-hidden">
+                        <div className="relative size-[72px] overflow-hidden rounded-md">
                           <Image
                             src={field.value instanceof File ? URL.createObjectURL(field.value) : field.value}
                             alt="Project Logo"
@@ -149,7 +149,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                             disabled={isPending}
                             variant="destructive"
                             size="xs"
-                            className="w-fit mt-2"
+                            className="mt-2 w-fit"
                             onClick={() => {
                               field.onChange(null);
 
@@ -164,7 +164,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                             disabled={isPending}
                             variant="tertiary"
                             size="xs"
-                            className="w-fit mt-2"
+                            className="mt-2 w-fit"
                             onClick={() => inputRef.current?.click()}
                           >
                             Upload Image

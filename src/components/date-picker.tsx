@@ -34,7 +34,7 @@ export const DatePicker = ({
           type="button"
           variant="outline"
           size="lg"
-          className={cn('w-full justify-start text-left font-normal px-3', !value && 'text-muted-foreground', className)}
+          className={cn('w-full justify-start px-3 text-left font-normal', !value && 'text-muted-foreground', className)}
         >
           <CalendarIcon className="mr-2 size-4" />
           {value ? format(value, 'PPP') : <span>{placeholder}</span>}

@@ -15,7 +15,7 @@ export const ResponsiveModal = ({ children, open, onOpenChange }: PropsWithChild
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="w-full sm:max-w-lg p-0 border-none overflow-y-auto hide-scrollbar max-h-[85vh]">{children}</DialogContent>
+        <DialogContent className="hide-scrollbar max-h-[85vh] w-full overflow-y-auto border-none p-0 sm:max-w-lg">{children}</DialogContent>
       </Dialog>
     );
   }
@@ -23,7 +23,7 @@ export const ResponsiveModal = ({ children, open, onOpenChange }: PropsWithChild
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
-        <div className="overflow-y-auto hide-scrollbar max-h-[85vh]">{children}</div>
+        <div className="hide-scrollbar max-h-[85vh] overflow-y-auto">{children}</div>
       </DrawerContent>
     </Drawer>
   );

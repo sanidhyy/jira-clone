@@ -19,13 +19,13 @@ export const TaskOverview = ({ task }: TaskOverviewProps) => {
   const { open } = useEditTaskModal();
 
   return (
-    <div className="flex flex-col gap-y-4 col-span-1">
-      <div className="bg-muted rounded-lg p-4">
+    <div className="col-span-1 flex flex-col gap-y-4">
+      <div className="rounded-lg bg-muted p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Overview</p>
 
           <Button onClick={() => open(task.$id)} size="sm" variant="secondary">
-            <Pencil className="size-4 mr-2" />
+            <Pencil className="mr-2 size-4" />
             Edit
           </Button>
         </div>

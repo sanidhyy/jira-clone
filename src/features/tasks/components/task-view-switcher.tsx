@@ -44,16 +44,19 @@ export const TaskViewSwitcher = ({ projectId, hideProjectFilter }: TaskViewSwitc
 
   const { mutate: bulkUpdateTasks } = useBulkUpdateTasks();
 
-  const onKanbanChange = useCallback((tasks: { $id: string; status: TaskStatus; position: number }[]) => {
-    bulkUpdateTasks({
-      json: { tasks },
-    });
-  }, []);
+  const onKanbanChange = useCallback(
+    (tasks: { $id: string; status: TaskStatus; position: number }[]) => {
+      bulkUpdateTasks({
+        json: { tasks },
+      });
+    },
+    [bulkUpdateTasks],
+  );
 
   return (
-    <Tabs defaultValue={view} onValueChange={setView} className="flex-1 w-full border rounded-lg">
-      <div className="h-full flex flex-col overflow-auto p-4">
-        <div className="flex flex-col gap-y-2 lg:flex-row justify-between items-center">
+    <Tabs defaultValue={view} onValueChange={setView} className="w-full flex-1 rounded-lg border">
+      <div className="flex h-full flex-col overflow-auto p-4">
+        <div className="flex flex-col items-center justify-between gap-y-2 lg:flex-row">
           <TabsList className="w-full lg:w-auto">
             <TabsTrigger className="h-8 w-full lg:w-auto" value="table">
               Table
@@ -79,7 +82,7 @@ export const TaskViewSwitcher = ({ projectId, hideProjectFilter }: TaskViewSwitc
 
         <DottedSeparator className="my-4" />
         {isLoadingTasks ? (
-          <div className="w-full border rounded-lg h-[200px] flex flex-col items-center justify-center">
+          <div className="flex h-[200px] w-full flex-col items-center justify-center rounded-lg border">
             <Loader2 className="size-5 animate-spin text-muted-foreground" />
           </div>
         ) : (

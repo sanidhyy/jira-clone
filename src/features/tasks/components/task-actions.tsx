@@ -47,23 +47,23 @@ export const TaskActions = ({ id, projectId, children }: PropsWithChildren<TaskA
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" className="w-48">
-          <DropdownMenuItem onClick={onOpenTask} disabled={isPending} className="font-medium p-[10px]">
-            <ExternalLink className="size-4 mr-2 stroke-2" />
+          <DropdownMenuItem onClick={onOpenTask} disabled={isPending} className="p-[10px] font-medium">
+            <ExternalLink className="mr-2 size-4 stroke-2" />
             Task Details
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={onOpenProject} disabled={isPending} className="font-medium p-[10px]">
-            <ExternalLink className="size-4 mr-2 stroke-2" />
+          <DropdownMenuItem onClick={onOpenProject} disabled={isPending} className="p-[10px] font-medium">
+            <ExternalLink className="mr-2 size-4 stroke-2" />
             Open Project
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={() => open(id)} disabled={isPending} className="font-medium p-[10px]">
-            <PencilIcon className="size-4 mr-2 stroke-2" />
+          <DropdownMenuItem onClick={() => open(id)} disabled={isPending} className="p-[10px] font-medium">
+            <PencilIcon className="mr-2 size-4 stroke-2" />
             Edit Task
           </DropdownMenuItem>
 
-          <DropdownMenuItem onClick={onDelete} disabled={isPending} className="text-amber-700 focus:text-amber-700 font-medium p-[10px]">
-            <Trash className="size-4 mr-2 stroke-2" />
+          <DropdownMenuItem onClick={onDelete} disabled={isPending} className="p-[10px] font-medium text-amber-700 focus:text-amber-700">
+            <Trash className="mr-2 size-4 stroke-2" />
             Delete Task
           </DropdownMenuItem>
         </DropdownMenuContent>

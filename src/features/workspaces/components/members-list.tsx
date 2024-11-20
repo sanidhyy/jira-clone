@@ -53,10 +53,10 @@ export const MembersList = () => {
     <Card className="size-full border-none shadow-none">
       <ConfirmDialog />
 
-      <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
+      <CardHeader className="flex flex-row items-center gap-x-4 space-y-0 p-7">
         <Button variant="secondary" size="sm" asChild>
           <Link href={`/workspaces/${workspaceId}`}>
-            <ArrowLeft className="size-4 mr-2" />
+            <ArrowLeft className="mr-2 size-4" />
             Back
           </Link>
         </Button>
@@ -76,7 +76,7 @@ export const MembersList = () => {
 
               <div className="flex flex-col">
                 <p className="text-sm font-medium">{member.name}</p>
-                <p className="text-xs to-muted-foreground">{member.email}</p>
+                <p className="to-muted-foreground text-xs">{member.email}</p>
               </div>
 
               <DropdownMenu>

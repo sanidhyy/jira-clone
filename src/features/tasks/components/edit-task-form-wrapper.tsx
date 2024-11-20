@@ -37,8 +37,8 @@ export const EditTaskFormWrapper = ({ id, onCancel }: EditTaskFormWrapperProps) 
 
   if (isLoading) {
     return (
-      <Card className="w-full h-[714px] border-none shadow-none">
-        <CardContent className="flex items-center justify-center h-full">
+      <Card className="h-[714px] w-full border-none shadow-none">
+        <CardContent className="flex h-full items-center justify-center">
           <Loader2 className="size-5 animate-spin text-muted-foreground" />
         </CardContent>
       </Card>

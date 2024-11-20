@@ -47,11 +47,11 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
   if (isLoading) return null;
 
   return (
-    <div className="flex flex-col lg:flex-row gap-2">
+    <div className="flex flex-col gap-2 lg:flex-row">
       <Select defaultValue={status ?? undefined} onValueChange={onStatusChange}>
-        <SelectTrigger className="w-full lg:w-auto h-8">
+        <SelectTrigger className="h-8 w-full lg:w-auto">
           <div className="flex items-center pr-2">
-            <ListChecks className="size-4 mr-2" />
+            <ListChecks className="mr-2 size-4" />
             <SelectValue placeholder="All statuses" />
           </div>
         </SelectTrigger>
@@ -69,9 +69,9 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
       </Select>
 
       <Select defaultValue={assigneeId ?? undefined} onValueChange={onAssigneeChange}>
-        <SelectTrigger className="w-full lg:w-auto h-8">
+        <SelectTrigger className="h-8 w-full lg:w-auto">
           <div className="flex items-center pr-2">
-            <UserIcon className="size-4 mr-2" />
+            <UserIcon className="mr-2 size-4" />
             <SelectValue placeholder="All assignees" />
           </div>
         </SelectTrigger>
@@ -90,9 +90,9 @@ export const DataFilters = ({ hideProjectFilter }: DataFiltersProps) => {
 
       {!hideProjectFilter && (
         <Select defaultValue={projectId ?? undefined} onValueChange={onProjectChange}>
-          <SelectTrigger className="w-full lg:w-auto h-8">
+          <SelectTrigger className="h-8 w-full lg:w-auto">
             <div className="flex items-center pr-2">
-              <Folder className="size-4 mr-2" />
+              <Folder className="mr-2 size-4" />
               <SelectValue placeholder="All projects" />
             </div>
           </SelectTrigger>

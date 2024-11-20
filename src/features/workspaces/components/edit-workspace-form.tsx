@@ -114,7 +114,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
       <ResetDialog />
 
       <Card className="size-full border-none shadow-none">
-        <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
+        <CardHeader className="flex flex-row items-center gap-x-4 space-y-0 p-7">
           <Button
             size="sm"
             variant="secondary"
@@ -161,7 +161,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
                     <div className="flex flex-col gap-y-2">
                       <div className="flex items-center gap-x-5">
                         {field.value ? (
-                          <div className="size-[72px] relative rounded-md overflow-hidden">
+                          <div className="relative size-[72px] overflow-hidden rounded-md">
                             <Image
                               src={field.value instanceof File ? URL.createObjectURL(field.value) : field.value}
                               alt="Workspace Logo"
@@ -196,7 +196,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
                               disabled={isPending}
                               variant="destructive"
                               size="xs"
-                              className="w-fit mt-2"
+                              className="mt-2 w-fit"
                               onClick={() => {
                                 field.onChange('');
 
@@ -211,7 +211,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
                               disabled={isPending}
                               variant="tertiary"
                               size="xs"
-                              className="w-fit mt-2"
+                              className="mt-2 w-fit"
                               onClick={() => inputRef.current?.click()}
                             >
                               Upload Image
@@ -258,7 +258,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
 
             <div className="mt-4">
               <div className="flex items-center gap-x-2">
-                <Input value={fullInviteLink} disabled className="disabled:opacity-100 disabled:cursor-default" />
+                <Input value={fullInviteLink} disabled className="disabled:cursor-default disabled:opacity-100" />
 
                 <Button onClick={handleCopy} variant="secondary" className="size-12">
                   <CopyIcon className="size-5" />
@@ -274,7 +274,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
               type="button"
               disabled={isPending}
               onClick={handleResetInviteCode}
-              className="mt-6 w-fit ml-auto"
+              className="ml-auto mt-6 w-fit"
             >
               Reset invite link
             </Button>
@@ -297,7 +297,7 @@ export const EditWorkspaceForm = ({ onCancel, initialValues }: EditWorkspaceForm
               type="button"
               disabled={isPending}
               onClick={handleDelete}
-              className="mt-6 w-fit ml-auto"
+              className="ml-auto mt-6 w-fit"
             >
               Delete Workspace
             </Button>

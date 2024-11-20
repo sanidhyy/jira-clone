@@ -14,12 +14,12 @@ interface KanbanCardProps {
 
 export const KanbanCard = ({ task }: KanbanCardProps) => {
   return (
-    <div className="bg-white p-2.5 mb-1.5 rounded shadow-sm space-y-3">
+    <div className="mb-1.5 space-y-3 rounded bg-white p-2.5 shadow-sm">
       <div className="flex items-start justify-between gap-x-2">
-        <p className="text-sm line-clamp-2">{task.name}</p>
+        <p className="line-clamp-2 text-sm">{task.name}</p>
 
         <TaskActions id={task.$id} projectId={task.projectId}>
-          <MoreHorizontal className="size-[18px] cursor-pointer stroke-1 shrink-0 text-neutral-700 hover:opacity-75 transition" />
+          <MoreHorizontal className="size-[18px] shrink-0 cursor-pointer stroke-1 text-neutral-700 transition hover:opacity-75" />
         </TaskActions>
       </div>
 

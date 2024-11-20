@@ -141,9 +141,9 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="flex overflow-x-auto custom-scrollbar">
+      <div className="custom-scrollbar flex overflow-x-auto">
         {boards.map((board) => (
-          <div key={board} className="flex-1 mx-2 bg-muted p-1.5 rounded-md min-w-[200px]">
+          <div key={board} className="mx-2 min-w-[200px] flex-1 rounded-md bg-muted p-1.5">
             <KanbanColumnHeader board={board} taskCount={tasks[board].length} />
 
             <Droppable droppableId={board}>

@@ -23,12 +23,12 @@ export const KanbanColumnHeader = ({ board, taskCount }: KanbanColumnHeaderProps
   const icon = statusIconMap[board];
 
   return (
-    <div className="px-2 py-1.5 flex items-center justify-between">
+    <div className="flex items-center justify-between px-2 py-1.5">
       <div className="flex items-center gap-x-2">
         {icon}
         <h2 className="text-sm font-medium">{snakeCaseToTitleCase(board)}</h2>
 
-        <div className="size-5 flex items-center justify-center rounded-md bg-neutral-200 text-xs text-neutral-700 font-medium">
+        <div className="flex size-5 items-center justify-center rounded-md bg-neutral-200 text-xs font-medium text-neutral-700">
           {taskCount}
         </div>
       </div>

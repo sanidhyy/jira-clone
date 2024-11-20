@@ -9,7 +9,7 @@ const TasksPage = async () => {
   if (!user) redirect('/sign-in');
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="flex h-full flex-col">
       <TaskViewSwitcher />
     </div>
   );

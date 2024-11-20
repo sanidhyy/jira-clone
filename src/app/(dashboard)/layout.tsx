@@ -16,15 +16,15 @@ const DashboardLayout = ({ children }: PropsWithChildren) => {
       <CreateWorkspaceModal />
 
       <div className="flex size-full">
-        <div className="fixed left-0 top-0 hidden lg:block lg:w-[264px] h-full overflow-auto">
+        <div className="fixed left-0 top-0 hidden h-full overflow-auto lg:block lg:w-[264px]">
           <Sidebar />
         </div>
 
-        <div className="lg:pl-[264px] w-full">
-          <div className="mx-auto max-w-screen-xl h-full">
+        <div className="w-full lg:pl-[264px]">
+          <div className="mx-auto h-full max-w-screen-xl">
             <Navbar />
 
-            <main className="h-full py-8 px-6 flex flex-col">{children}</main>
+            <main className="flex h-full flex-col px-6 py-8">{children}</main>
           </div>
         </div>
       </div>

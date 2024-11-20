@@ -52,7 +52,7 @@ export const JoinWorkspaceForm = ({ initialValues }: JoinWorkspaceFormProps) => 
       </div>
 
       <CardContent className="p-7">
-        <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+        <div className="flex flex-col items-center justify-between gap-2 md:flex-row">
           <Button disabled={isPending} size="lg" variant="secondary" type="button" className="w-full md:w-fit" asChild>
             <Link href="/">Cancel</Link>
           </Button>

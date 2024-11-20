@@ -91,7 +91,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
       <DeleteDialog />
 
       <Card className="size-full border-none shadow-none">
-        <CardHeader className="flex flex-row items-center gap-x-4 p-7 space-y-0">
+        <CardHeader className="flex flex-row items-center gap-x-4 space-y-0 p-7">
           <Button
             size="sm"
             variant="secondary"
@@ -138,7 +138,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                     <div className="flex flex-col gap-y-2">
                       <div className="flex items-center gap-x-5">
                         {field.value ? (
-                          <div className="size-[72px] relative rounded-md overflow-hidden">
+                          <div className="relative size-[72px] overflow-hidden rounded-md">
                             <Image
                               src={field.value instanceof File ? URL.createObjectURL(field.value) : field.value}
                               alt="Project Logo"
@@ -173,7 +173,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                               disabled={isPending}
                               variant="destructive"
                               size="xs"
-                              className="w-fit mt-2"
+                              className="mt-2 w-fit"
                               onClick={() => {
                                 field.onChange('');
 
@@ -188,7 +188,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
                               disabled={isPending}
                               variant="tertiary"
                               size="xs"
-                              className="w-fit mt-2"
+                              className="mt-2 w-fit"
                               onClick={() => inputRef.current?.click()}
                             >
                               Upload Image
@@ -241,7 +241,7 @@ export const EditProjectForm = ({ onCancel, initialValues }: EditProjectFormProp
               type="button"
               disabled={isPending}
               onClick={handleDelete}
-              className="mt-6 w-fit ml-auto"
+              className="ml-auto mt-6 w-fit"
             >
               Delete Project
             </Button>
