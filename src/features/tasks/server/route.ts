@@ -195,7 +195,7 @@ const app = new Hono()
 
     const newPosition = highestPositionTask.documents.length > 0 ? highestPositionTask.documents[0].position + 1000 : 1000;
 
-    const task = await databases.createDocument(DATABASE_ID, TASKS_ID, ID.unique(), {
+    const task = await databases.createDocument<Task>(DATABASE_ID, TASKS_ID, ID.unique(), {
       name,
       status,
       workspaceId,
