@@ -180,8 +180,8 @@ export const MemberList = ({ data, total }: MemberListProps) => {
                   <MemberAvatar name={member.name} className="size-12" />
 
                   <div className="flex flex-col items-center overflow-hidden">
-                    <p className="line-clamp-1 text-lg font-medium">{member.name}</p>
-                    <p className="line-clamp-1 text-sm text-muted-foreground">{member.email}</p>
+                    <p className="line-clamp-1 text-lg font-medium">{member.name.slice(0, 15)}</p>
+                    <p className="line-clamp-1 text-sm text-muted-foreground">{member.email.slice(0, 20)}</p>
                   </div>
                 </CardContent>
               </Card>

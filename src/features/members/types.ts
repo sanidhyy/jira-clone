@@ -8,5 +8,7 @@ export enum MemberRole {
 export type Member = Models.Document & {
   workspaceId: string;
   userId: string;
+  name: string;
+  email: string;
   role: MemberRole;
 };
