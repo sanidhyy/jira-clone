@@ -3,10 +3,12 @@
 import { Pencil } from 'lucide-react';
 import Link from 'next/link';
 
+import { Analytics } from '@/components/analytics';
 import { PageError } from '@/components/page-error';
 import { PageLoader } from '@/components/page-loader';
 import { Button } from '@/components/ui/button';
 import { useGetProject } from '@/features/projects/api/use-get-project';
+import { useGetProjectAnalytics } from '@/features/projects/api/use-get-project-analytics';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import { useProjectId } from '@/features/projects/hooks/use-project-id';
 import { TaskViewSwitcher } from '@/features/tasks/components/task-view-switcher';
@@ -14,7 +16,10 @@ import { TaskViewSwitcher } from '@/features/tasks/components/task-view-switcher
 export const ProjectIdClient = () => {
   const projectId = useProjectId();
 
-  const { data: project, isLoading } = useGetProject({ projectId });
+  const { data: project, isLoading: isLoadingProject } = useGetProject({ projectId });
+  const { data: projectAnalytics, isLoading: isLoadingProjectAnalytics } = useGetProjectAnalytics({ projectId });
+
+  const isLoading = isLoadingProject || isLoadingProjectAnalytics;
 
   if (isLoading) return <PageLoader />;
 
@@ -38,6 +43,8 @@ export const ProjectIdClient = () => {
           </Button>
         </div>
       </div>
+
+      {projectAnalytics && <Analytics data={projectAnalytics} />}
 
       <TaskViewSwitcher projectId={projectId} hideProjectFilter />
     </div>
