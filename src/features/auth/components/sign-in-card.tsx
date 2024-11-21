@@ -115,12 +115,12 @@ export const SignInCard = () => {
       </div>
 
       <CardContent className="flex flex-col gap-y-4 p-7">
-        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
-          <FcGoogle className="mr-2 size-5" /> Login with Google
+        <Button onClick={() => handleOAuth(OAuthProvider.Google)} disabled={isPending} variant="secondary" size="lg" className="w-full">
+          <FcGoogle className="mr-2 size-5" /> Continue with Google
         </Button>
 
         <Button onClick={() => handleOAuth(OAuthProvider.Github)} disabled={isPending} variant="secondary" size="lg" className="w-full">
-          <FaGithub className="mr-2 size-5" /> Login with GitHub
+          <FaGithub className="mr-2 size-5" /> Continue with GitHub
         </Button>
       </CardContent>
 

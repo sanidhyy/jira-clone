@@ -2,9 +2,12 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { OAuthProvider } from 'node-appwrite';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { DottedSeparator } from '@/components/dotted-separator';
@@ -14,9 +17,11 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 import { Input } from '@/components/ui/input';
 import { useRegister } from '@/features/auth/api/use-register';
 import { signUpFormSchema } from '@/features/auth/schema';
+import { onOAuth } from '@/lib/oauth';
 
 export const SignUpCard = () => {
-  const { mutate: register, isPending } = useRegister();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+  const { mutate: register, isPending: isRegistering } = useRegister();
   const signUpForm = useForm<z.infer<typeof signUpFormSchema>>({
     resolver: zodResolver(signUpFormSchema),
     defaultValues: {
@@ -41,6 +46,19 @@ export const SignUpCard = () => {
       },
     );
   };
+
+  const handleOAuth = (provider: OAuthProvider.Github | OAuthProvider.Google) => {
+    setIsRedirecting(true);
+
+    onOAuth(provider)
+      .catch((error) => {
+        console.error(error);
+        toast.error('Something went wrong.');
+      })
+      .finally(() => setIsRedirecting(false));
+  };
+
+  const isPending = isRegistering || isRedirecting;
 
   return (
     <Card className="size-full border-none shadow-none md:w-[487px]">
@@ -122,12 +140,12 @@ export const SignUpCard = () => {
       </div>
 
       <CardContent className="flex flex-col gap-y-4 p-7">
-        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
-          <FcGoogle className="mr-2 size-5" /> Login with Google
+        <Button onClick={() => handleOAuth(OAuthProvider.Google)} disabled={isPending} variant="secondary" size="lg" className="w-full">
+          <FcGoogle className="mr-2 size-5" /> Continue with Google
         </Button>
 
-        <Button disabled={isPending} variant="secondary" size="lg" className="w-full">
-          <FaGithub className="mr-2 size-5" /> Login with GitHub
+        <Button onClick={() => handleOAuth(OAuthProvider.Github)} disabled={isPending} variant="secondary" size="lg" className="w-full">
+          <FaGithub className="mr-2 size-5" /> Continue with GitHub
         </Button>
       </CardContent>
 
