@@ -22,6 +22,14 @@ export const useBulkUpdateTasks = () => {
       toast.success('Tasks updated.');
 
       queryClient.invalidateQueries({
+        queryKey: ['workspace-analytics', data.workspaceId],
+        exact: true,
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['project-analytics'],
+        exact: false,
+      });
+      queryClient.invalidateQueries({
         queryKey: ['tasks', data.workspaceId],
         exact: false,
       });
