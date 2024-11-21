@@ -20,7 +20,7 @@ import { cn } from '@/lib/utils';
 
 interface EditTaskFormProps {
   onCancel?: () => void;
-  projectOptions: { id: string; name: string; imageUrl: string }[];
+  projectOptions: { id: string; name: string; imageUrl?: string }[];
   memberOptions: { id: string; name: string }[];
   initialValues: Task;
 }

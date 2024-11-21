@@ -1,6 +1,7 @@
 import { useRouter } from 'next/navigation';
 
 import { MemberAvatar } from '@/features/members/components/member-avatar';
+import type { Member } from '@/features/members/types';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
 import type { Project } from '@/features/projects/types';
 import { TaskStatus } from '@/features/tasks/types';
@@ -9,7 +10,7 @@ import { cn } from '@/lib/utils';
 
 interface EventCardProps {
   title: string;
-  assignee: any;
+  assignee: Member;
   project: Project;
   status: TaskStatus;
   id: string;
