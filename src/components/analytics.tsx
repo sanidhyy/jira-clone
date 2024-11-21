@@ -23,9 +23,9 @@ import { DottedSeparator } from './dotted-separator';
 
 export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
   return (
-    <ScrollArea className="border rounded-lg w-full whitespace-nowrap shrink-0">
-      <div className="w-full flex flex-row">
-        <div className="flex items-center flex-1">
+    <ScrollArea className="w-full shrink-0 whitespace-nowrap rounded-lg border">
+      <div className="flex w-full flex-row">
+        <div className="flex flex-1 items-center">
           <AnalyticsCard
             title="Total tasks"
             value={data.taskCount}
@@ -36,7 +36,7 @@ export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
           <DottedSeparator direction="vertical" />
         </div>
 
-        <div className="flex items-center flex-1">
+        <div className="flex flex-1 items-center">
           <AnalyticsCard
             title="Assigned tasks"
             value={data.assignedTaskCount}
@@ -47,7 +47,7 @@ export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
           <DottedSeparator direction="vertical" />
         </div>
 
-        <div className="flex items-center flex-1">
+        <div className="flex flex-1 items-center">
           <AnalyticsCard
             title="Completed tasks"
             value={data.completedTaskCount}
@@ -58,7 +58,7 @@ export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
           <DottedSeparator direction="vertical" />
         </div>
 
-        <div className="flex items-center flex-1">
+        <div className="flex flex-1 items-center">
           <AnalyticsCard
             title="Overdue tasks"
             value={data.overdueTaskCount}
@@ -69,7 +69,7 @@ export const Analytics = ({ data }: ProjectAnalyticsResponseType) => {
           <DottedSeparator direction="vertical" />
         </div>
 
-        <div className="flex items-center flex-1">
+        <div className="flex flex-1 items-center">
           <AnalyticsCard
             title="Incomplete tasks"
             value={data.incompleteTaskCount}

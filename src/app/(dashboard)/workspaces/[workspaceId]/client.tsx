@@ -37,10 +37,10 @@ export const WorkspaceIdClient = () => {
   if (!workspaceAnalytics || !tasks || !projects || !members) return <PageError message="Failed to load workspace data." />;
 
   return (
-    <div className="h-full flex flex-col space-y-4">
+    <div className="flex h-full flex-col space-y-4">
       <Analytics data={workspaceAnalytics} />
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
         <TaskList data={tasks.documents} total={tasks.total} />
         <ProjectList data={projects.documents} total={projects.total} />
         <MemberList data={members.documents} total={members.total} />
@@ -59,8 +59,8 @@ export const TaskList = ({ data, total }: TaskListProps) => {
   const { open: createTask } = useCreateTaskModal();
 
   return (
-    <div className="flex flex-col gap-y-4 col-span-1">
-      <div className="bg-muted rounded-lg p-4">
+    <div className="col-span-1 flex flex-col gap-y-4">
+      <div className="rounded-lg bg-muted p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Tasks ({total})</p>
 
@@ -75,17 +75,17 @@ export const TaskList = ({ data, total }: TaskListProps) => {
           {data.map((task) => (
             <li key={task.$id}>
               <Link href={`/workspaces/${workspaceId}/tasks/${task.$id}`}>
-                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
+                <Card className="rounded-lg shadow-none transition hover:opacity-75">
                   <CardContent className="p-4">
-                    <p className="text-lg font-medium truncate">{task.name}</p>
+                    <p className="truncate text-lg font-medium">{task.name}</p>
 
                     <div className="flex items-center gap-x-2">
                       <p>{task.project?.name}</p>
 
                       <div aria-hidden className="size-1 rounded-full bg-neutral-300" />
 
-                      <div className="text-sm text-muted-foreground flex items-center">
-                        <CalendarIcon className="size-3 mr-1" />
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <CalendarIcon className="mr-1 size-3" />
                         <span className="truncate">{formatDistanceToNow(new Date(task.dueDate))}</span>
                       </div>
                     </div>
@@ -95,7 +95,7 @@ export const TaskList = ({ data, total }: TaskListProps) => {
             </li>
           ))}
 
-          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">No tasks found.</li>
+          <li className="hidden text-center text-sm text-muted-foreground first-of-type:block">No tasks found.</li>
         </ul>
 
         <Button variant="muted" className="mt-4 w-full" asChild>
@@ -116,8 +116,8 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
   const { open: createProject } = useCreateProjectModal();
 
   return (
-    <div className="flex flex-col gap-y-4 col-span-1">
-      <div className="bg-white border rounded-lg p-4">
+    <div className="col-span-1 flex flex-col gap-y-4">
+      <div className="rounded-lg border bg-white p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Projects ({total})</p>
 
@@ -128,21 +128,21 @@ export const ProjectList = ({ data, total }: ProjectListProps) => {
 
         <DottedSeparator className="my-4" />
 
-        <ul className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <ul className="grid grid-cols-1 gap-4 lg:grid-cols-2">
           {data.map((project) => (
             <li key={project.$id}>
               <Link href={`/workspaces/${workspaceId}/projects/${project.$id}`}>
-                <Card className="shadow-none rounded-lg hover:opacity-75 transition">
-                  <CardContent className="p-4 flex items-center gap-x-2.5">
+                <Card className="rounded-lg shadow-none transition hover:opacity-75">
+                  <CardContent className="flex items-center gap-x-2.5 p-4">
                     <ProjectAvatar name={project.name} image={project.imageUrl} className="size-12" fallbackClassName="text-lg" />
-                    <p className="text-lg font-medium truncate">{project.name}</p>
+                    <p className="truncate text-lg font-medium">{project.name}</p>
                   </CardContent>
                 </Card>
               </Link>
             </li>
           ))}
 
-          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">No projects found.</li>
+          <li className="hidden text-center text-sm text-muted-foreground first-of-type:block">No projects found.</li>
         </ul>
       </div>
     </div>
@@ -158,8 +158,8 @@ export const MemberList = ({ data, total }: MemberListProps) => {
   const workspaceId = useWorkspaceId();
 
   return (
-    <div className="flex flex-col gap-y-4 col-span-1">
-      <div className="bg-white border rounded-lg p-4">
+    <div className="col-span-1 flex flex-col gap-y-4">
+      <div className="rounded-lg border bg-white p-4">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold">Members ({total})</p>
 
@@ -172,23 +172,23 @@ export const MemberList = ({ data, total }: MemberListProps) => {
 
         <DottedSeparator className="my-4" />
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((member) => (
             <li key={member.$id}>
-              <Card className="shadow-none rounded-lg overflow-hidden">
-                <CardContent className="p-3 flex flex-col items-center gap-x-2">
+              <Card className="overflow-hidden rounded-lg shadow-none">
+                <CardContent className="flex flex-col items-center gap-x-2 p-3">
                   <MemberAvatar name={member.name} className="size-12" />
 
                   <div className="flex flex-col items-center overflow-hidden">
-                    <p className="text-lg font-medium line-clamp-1">{member.name}</p>
-                    <p className="text-sm text-muted-foreground line-clamp-1">{member.email}</p>
+                    <p className="line-clamp-1 text-lg font-medium">{member.name}</p>
+                    <p className="line-clamp-1 text-sm text-muted-foreground">{member.email}</p>
                   </div>
                 </CardContent>
               </Card>
             </li>
           ))}
 
-          <li className="text-sm text-muted-foreground text-center hidden first-of-type:block">No members found.</li>
+          <li className="hidden text-center text-sm text-muted-foreground first-of-type:block">No members found.</li>
         </ul>
       </div>
     </div>

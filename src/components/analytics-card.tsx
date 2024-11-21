@@ -16,10 +16,10 @@ export const AnalyticsCard = ({ title, value, variant, increaseValue }: Analytic
   const Icon = variant === 'up' ? FaCaretUp : FaCaretDown;
 
   return (
-    <Card className="shadow-none border-none w-full">
+    <Card className="w-full border-none shadow-none">
       <CardHeader>
         <div className="flex items-center gap-x-2.5">
-          <CardDescription className="flex items-center gap-x-2 font-medium overflow-hidden">
+          <CardDescription className="flex items-center gap-x-2 overflow-hidden font-medium">
             <span className="truncate text-base">{title}</span>
           </CardDescription>
 
