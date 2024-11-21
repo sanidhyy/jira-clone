@@ -79,12 +79,12 @@ const app = new Hono()
         return ctx.json({ error: 'Unauthorized.' }, 401);
       }
 
-      const projects = await databases.listDocuments(DATABASE_ID, PROJECTS_ID, [
+      const projects = await databases.listDocuments<Project>(DATABASE_ID, PROJECTS_ID, [
         Query.equal('workspaceId', workspaceId),
         Query.orderDesc('$createdAt'),
       ]);
 
-      const projectsWithImages: Models.Document[] = await Promise.all(
+      const projectsWithImages: Project[] = await Promise.all(
         projects.documents.map(async (project) => {
           let imageUrl: string | undefined = undefined;
 
