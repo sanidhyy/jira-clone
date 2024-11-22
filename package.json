@@ -11,6 +11,75 @@
     "format": "prettier --check . --config .prettierrc.mjs",
     "format:fix": "prettier --write . --config .prettierrc.mjs"
   },
+  "author": {
+    "name": "Sanidhya Kumar Verma",
+    "email": "sanidhya.verma12345@gmail.com",
+    "url": "https://github.com/sanidhyy"
+  },
+  "description": "Full-stack Jira Clone using Next.js 14 and Appwrite.",
+  "keywords": [
+    "reactjs",
+    "nextjs",
+    "appwrite",
+    "appwrite-io",
+    "next-auth",
+    "react-big-calendar",
+    "lucide-icons",
+    "react-icons",
+    "react-day-picker",
+    "shadcn-ui",
+    "radix-ui",
+    "tailwindcss",
+    "lodash",
+    "react-query",
+    "nuqs",
+    "sonner",
+    "typescript",
+    "javascript",
+    "vercel",
+    "postcss",
+    "prettier",
+    "eslint",
+    "react-dom",
+    "html",
+    "css",
+    "nuqs-state-management",
+    "infinite-query",
+    "real-time-features",
+    "organized-table",
+    "filter-table",
+    "paginate-table",
+    "tasks-management",
+    "projects-management",
+    "workspaces-management",
+    "ui/ux",
+    "appwrite-db",
+    "jira-clone",
+    "date-fns",
+    "cn",
+    "clsx",
+    "lucide-react"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sanidhyy/jira-clone.git"
+  },
+  "homepage": "https://github.com/sanidhyy/jira-clone#readme",
+  "bugs": {
+    "url": "https://github.com/sanidhyy/jira-clone/issues",
+    "email": "sanidhya.verma12345@gmail.com"
+  },
+  "funding": [
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/sanidhy"
+    },
+    {
+      "type": "Buy me a coffee",
+      "url": "https://www.buymeacoffee.com/sanidhy"
+    }
+  ],
   "dependencies": {
     "@hello-pangea/dnd": "^17.0.0",
     "@hono/zod-validator": "^0.4.1",
