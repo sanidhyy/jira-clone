@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 
 import { Logo } from '@/components/logo';
+import { SourceCode } from '@/components/source-code';
 import { Button } from '@/components/ui/button';
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
@@ -17,9 +18,13 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
         <nav className="flex items-center justify-between">
           <Logo />
 
-          <Button variant="secondary" asChild>
-            <Link href={isSignIn ? '/sign-up' : 'sign-in'}>{isSignIn ? 'Register' : 'Login'}</Link>
-          </Button>
+          <div className="flex items-center gap-x-2.5">
+            <Button variant="secondary" asChild>
+              <Link href={isSignIn ? '/sign-up' : 'sign-in'}>{isSignIn ? 'Register' : 'Login'}</Link>
+            </Button>
+
+            <SourceCode />
+          </div>
         </nav>
 
         <div className="flex flex-col items-center justify-center p-4 md:pt-14">{children}</div>
