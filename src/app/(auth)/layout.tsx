@@ -1,10 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { PropsWithChildren } from 'react';
 
+import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 
 const AuthLayout = ({ children }: PropsWithChildren) => {
@@ -15,9 +15,7 @@ const AuthLayout = ({ children }: PropsWithChildren) => {
     <main className="min-h-screen bg-neutral-100">
       <div className="mx-auto max-w-screen-2xl p-4">
         <nav className="flex items-center justify-between">
-          <Link href="/">
-            <Image src="/logo.svg" alt="Logo" height={56} width={152} />
-          </Link>
+          <Logo />
 
           <Button variant="secondary" asChild>
             <Link href={isSignIn ? '/sign-up' : 'sign-in'}>{isSignIn ? 'Register' : 'Login'}</Link>
