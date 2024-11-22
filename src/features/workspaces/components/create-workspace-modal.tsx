@@ -9,7 +9,7 @@ export const CreateWorkspaceModal = () => {
   const { isOpen, setIsOpen, close } = useCreateWorkspaceModal();
 
   return (
-    <ResponsiveModal open={isOpen} onOpenChange={setIsOpen}>
+    <ResponsiveModal title="Create Workspace" description="Create a new workspace to get started." open={isOpen} onOpenChange={setIsOpen}>
       <CreateWorkspaceForm onCancel={close} />
     </ResponsiveModal>
   );
