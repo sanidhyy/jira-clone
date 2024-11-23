@@ -18,6 +18,7 @@ import { columns } from './columns';
 import { DataCalendar } from './data-calendar';
 import { DataFilters } from './data-filters';
 import { DataKanban } from './data-kanban';
+import { DataSearch } from './data-search';
 import { DataTable } from './data-table';
 
 interface TaskViewSwitcherProps {
@@ -29,7 +30,7 @@ export const TaskViewSwitcher = ({ projectId, hideProjectFilter }: TaskViewSwitc
   const [view, setView] = useQueryState('task-view', {
     defaultValue: 'table',
   });
-  const [{ status, assigneeId, projectId: filteredProjectId, dueDate }] = useTaskFilters();
+  const [{ status, assigneeId, projectId: filteredProjectId, dueDate, search }] = useTaskFilters();
 
   const workspaceId = useWorkspaceId();
 
@@ -40,6 +41,7 @@ export const TaskViewSwitcher = ({ projectId, hideProjectFilter }: TaskViewSwitc
     assigneeId,
     projectId: projectId ?? filteredProjectId,
     dueDate,
+    search,
   });
 
   const { mutate: bulkUpdateTasks } = useBulkUpdateTasks();
@@ -78,7 +80,11 @@ export const TaskViewSwitcher = ({ projectId, hideProjectFilter }: TaskViewSwitc
         </div>
         <DottedSeparator className="my-4" />
 
-        <DataFilters hideProjectFilter={hideProjectFilter} />
+        <div className="flex flex-col justify-between gap-2 xl:flex-row xl:items-center">
+          <DataFilters hideProjectFilter={hideProjectFilter} />
+
+          <DataSearch />
+        </div>
 
         <DottedSeparator className="my-4" />
         {isLoadingTasks ? (
