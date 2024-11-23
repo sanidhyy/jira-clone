@@ -41,7 +41,7 @@ export const WorkspaceIdClient = () => {
       <Analytics data={workspaceAnalytics} />
 
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-        <TaskList data={tasks.documents} total={tasks.total} />
+        <TaskList data={tasks.documents.splice(0, 4)} total={tasks.total} />
         <ProjectList data={projects.documents} total={projects.total} />
         <MemberList data={members.documents} total={members.total} />
       </div>
