@@ -215,11 +215,11 @@ const app = new Hono()
       return ctx.json({ error: 'Unauthorized.' }, 401);
     }
 
-    const tasks = await databases.listDocuments<Task>(DATABASE_ID, PROJECTS_ID, [Query.equal('projectId', projectId)]);
+    const tasks = await databases.listDocuments<Task>(DATABASE_ID, TASKS_ID, [Query.equal('projectId', projectId)]);
 
     // delete tasks
     for (const task of tasks.documents) {
-      await databases.deleteDocument(DATABASE_ID, PROJECTS_ID, task.$id);
+      await databases.deleteDocument(DATABASE_ID, TASKS_ID, task.$id);
     }
 
     if (existingProject.imageId) await storage.deleteFile(IMAGES_BUCKET_ID, existingProject.imageId);
