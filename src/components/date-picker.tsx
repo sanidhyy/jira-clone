@@ -44,7 +44,7 @@ export const DatePicker = ({
       <PopoverContent className="w-auto p-0">
         <Calendar mode="single" selected={value} onSelect={(date) => onChange(date as Date)} initialFocus />
 
-        {value && (
+        {showReset && value && (
           <PopoverClose asChild>
             <Button onClick={() => onChange(null)} variant="secondary" size="sm" className="w-full">
               <OctagonMinus className="size-4" />
