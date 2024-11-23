@@ -150,6 +150,8 @@ const app = new Hono()
     const { workspaceId } = ctx.req.param();
     const { name, image } = ctx.req.valid('form');
 
+    const existingWorkspace = await databases.getDocument<Workspace>(DATABASE_ID, WORKSPACES_ID, workspaceId);
+
     const member = await getMember({
       databases,
       workspaceId,
@@ -177,6 +179,9 @@ const app = new Hono()
 
       const file = await storage.createFile(IMAGES_BUCKET_ID, ID.unique(), renamedImage);
 
+      // delete old project image
+      if (existingWorkspace.imageId) await storage.deleteFile(IMAGES_BUCKET_ID, existingWorkspace.imageId);
+
       uploadedImageId = file.$id;
     }
 
@@ -189,6 +194,7 @@ const app = new Hono()
   })
   .delete('/:workspaceId', sessionMiddleware, async (ctx) => {
     const databases = ctx.get('databases');
+    const storage = ctx.get('storage');
     const user = ctx.get('user');
 
     const { workspaceId } = ctx.req.param();
@@ -203,6 +209,8 @@ const app = new Hono()
       return ctx.json({ error: 'Unauthorized.' }, 401);
     }
 
+    const existingWorkspace = await databases.getDocument<Workspace>(DATABASE_ID, WORKSPACES_ID, workspaceId);
+
     const members = await databases.listDocuments<Member>(DATABASE_ID, MEMBERS_ID, [Query.equal('workspaceId', workspaceId)]);
 
     const projects = await databases.listDocuments<Project>(DATABASE_ID, PROJECTS_ID, [Query.equal('workspaceId', workspaceId)]);
@@ -216,6 +224,7 @@ const app = new Hono()
 
     // delete projects
     for (const project of projects.documents) {
+      if (project.imageId) await storage.deleteFile(IMAGES_BUCKET_ID, project.imageId);
       await databases.deleteDocument(DATABASE_ID, PROJECTS_ID, project.$id);
     }
 
@@ -223,6 +232,8 @@ const app = new Hono()
     for (const task of tasks.documents) {
       await databases.deleteDocument(DATABASE_ID, TASKS_ID, task.$id);
     }
+
+    if (existingWorkspace.imageId) storage.deleteFile(IMAGES_BUCKET_ID, existingWorkspace.imageId);
 
     await databases.deleteDocument(DATABASE_ID, WORKSPACES_ID, workspaceId);
 

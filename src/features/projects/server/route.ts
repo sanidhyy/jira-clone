@@ -183,6 +183,9 @@ const app = new Hono()
 
       const file = await storage.createFile(IMAGES_BUCKET_ID, ID.unique(), renamedImage);
 
+      // delete old project image
+      if (existingProject.imageId) await storage.deleteFile(IMAGES_BUCKET_ID, existingProject.imageId);
+
       uploadedImageId = file.$id;
     }
 
@@ -195,6 +198,7 @@ const app = new Hono()
   })
   .delete('/:projectId', sessionMiddleware, async (ctx) => {
     const databases = ctx.get('databases');
+    const storage = ctx.get('storage');
     const user = ctx.get('user');
 
     const { projectId } = ctx.req.param();
@@ -217,6 +221,8 @@ const app = new Hono()
     for (const task of tasks.documents) {
       await databases.deleteDocument(DATABASE_ID, PROJECTS_ID, task.$id);
     }
+
+    if (existingProject.imageId) await storage.deleteFile(IMAGES_BUCKET_ID, existingProject.imageId);
 
     await databases.deleteDocument(DATABASE_ID, PROJECTS_ID, projectId);
 
