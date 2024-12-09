@@ -123,7 +123,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.9",
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.1.0",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-big-calendar": "^1.15.0",
