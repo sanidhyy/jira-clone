@@ -245,7 +245,7 @@ const app = new Hono()
       const tasksToUpdate = await databases.listDocuments<Task>(DATABASE_ID, TASKS_ID, [
         Query.contains(
           '$id',
-          tasks.map((task) => task.$id),
+          tasks.map((task: { $id: any }) => task.$id),
         ),
       ]);
 
@@ -268,7 +268,7 @@ const app = new Hono()
       }
 
       const updatedTasks = await Promise.all(
-        tasks.map(async (task) => {
+        tasks.map(async (task: { $id: any; status: any; position: any }) => {
           const { $id, status, position } = task;
 
           return databases.updateDocument<Task>(DATABASE_ID, TASKS_ID, $id, { status, position });
