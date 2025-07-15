@@ -127,7 +127,7 @@
     "@types/node": "^24",
     "@types/react": "^18",
     "@types/react-big-calendar": "^1.15.0",
-    "@types/react-dom": "^19",
+    "@types/react-dom": "^18",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
     "eslint-config-prettier": "^10.0.1",
