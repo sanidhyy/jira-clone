@@ -105,7 +105,7 @@
     "lucide-react": "^0.541.0",
     "next": "14.2.15",
     "next-themes": "^0.4.3",
-    "node-appwrite": "^17.0.0",
+    "node-appwrite": "^18.0.0",
     "nuqs": "1.19.1",
     "react": "^18",
     "react-big-calendar": "^1.15.0",
