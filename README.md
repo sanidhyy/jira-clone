@@ -43,6 +43,7 @@
 
 Here is the folder structure of this app.
 
+<!--- FOLDER_STRUCTURE_START --->
 ```bash
 jira-clone/
   |- public/
@@ -115,6 +116,7 @@ jira-clone/
   |- tailwind.config.ts
   |- tsconfig.json
 ```
+<!--- FOLDER_STRUCTURE_END --->
 
 <br />
 
@@ -328,6 +330,7 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and dependencies that are used in Jira Clone.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
+<!--- DEPENDENCIES_START --->
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^17.0.0
 - [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.4.1
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.9.0
@@ -384,6 +387,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [tidy-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): npm:@trivago/prettier-plugin-sort-imports
 - [sort-classes](https://www.npmjs.com/package/prettier-plugin-tailwindcss): npm:prettier-plugin-tailwindcss
 - [typescript](https://www.npmjs.com/package/typescript): ^5
+<!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
 
