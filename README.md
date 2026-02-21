@@ -47,61 +47,15 @@ Here is the folder structure of this app.
 ```bash
 jira-clone/
   |- public/
-    |-- github.svg
-    |-- icon.svg
   |- src/
     |-- app/
-        |--- (auth)/
-        |--- (dashboard)/
-        |--- (standalone)/
-        |--- api/[[...route]]/
-        |--- apple-icon.png
-        |--- error.tsx
-        |--- favicon.ico
-        |--- globals.css
-        |--- icon1.png
-        |--- icon2.png
-        |--- layout.tsx
-        |--- not-found.tsx
     |-- components/
-        |--- ui/
-        |--- analytics-card.tsx
-        |--- analytics.tsx
-        |--- date-picker.tsx
-        |--- dotted-separator.tsx
-        |--- logo.tsx
-        |--- mobile-sidebar.tsx
-        |--- modal-provider.tsx
-        |--- navbar.tsx
-        |--- navigation.tsx
-        |--- page-error.tsx
-        |--- page-loader.tsx
-        |--- projects.tsx
-        |--- query-provider.tsx
-        |--- responsive-modal.tsx
-        |--- sidebar.tsx
-        |--- source-code.tsx
-        |--- workspace-switcher.tsx
     |-- config/
-        |--- db.ts
-        |--- index.ts
     |-- features/
-        |--- auth/
-        |--- members/
-        |--- projects/
-        |--- tasks/
-        |--- workspaces/
     |-- hooks/
-        |--- use-confirm.tsx
-        |--- use-debounce.ts
     |-- lib/
-        |--- appwrite.ts
-        |--- hono.ts
-        |--- oauth.ts
-        |--- session-middleware.ts
-        |--- utils.ts
   |- .env.example
-  |- .env.local
+  |- .env/.env.local
   |- .eslintrc.json
   |- .gitignore
   |- .prettierrc.json
@@ -111,10 +65,10 @@ jira-clone/
   |- environment.d.ts
   |- next.config.mjs
   |- package.json
-  |- postcss.config.js
-  |- README.md
+  |- postcss.config.mjs
   |- tailwind.config.ts
   |- tsconfig.json
+  |- vercel.ts
 ```
 <!--- FOLDER_STRUCTURE_END --->
 
@@ -331,8 +285,9 @@ Useful resources and dependencies that are used in Jira Clone.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 <!--- DEPENDENCIES_START --->
-- [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^17.0.0
-- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.4.1
+- [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.25.9
+- [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^18.0.1
+- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.7.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.9.0
 - [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.1.1
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.2
@@ -348,15 +303,28 @@ Useful resources and dependencies that are used in Jira Clone.
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.1.0
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.59.16
 - [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^8.20.5
+- [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^6.0.0
+- [@types/node](https://www.npmjs.com/package/@types/node): ^25
+- [@types/react](https://www.npmjs.com/package/@types/react): ^18
+- [@types/react-big-calendar](https://www.npmjs.com/package/@types/react-big-calendar): ^1.15.0
+- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^18
+- [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.33
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.0
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
+- [eslint](https://www.npmjs.com/package/eslint): ^10
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.1.6
+- [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
+- [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
 - [hono](https://www.npmjs.com/package/hono): ^4.6.7
-- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.453.0
-- [next](https://www.npmjs.com/package/next): 14.2.15
-- [next-themes](https://www.npmjs.com/package/next-themes): ^0.3.0
-- [node-appwrite](https://www.npmjs.com/package/node-appwrite): ^14.1.0
+- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.564.0
+- [next](https://www.npmjs.com/package/next): 14.2.35
+- [next-themes](https://www.npmjs.com/package/next-themes): ^0.4.3
+- [node-appwrite](https://www.npmjs.com/package/node-appwrite): ^17.0.0
 - [nuqs](https://www.npmjs.com/package/nuqs): 1.19.1
+- [postcss](https://www.npmjs.com/package/postcss): ^8
+- [prettier](https://www.npmjs.com/package/prettier): ^3.3.3
+- [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.7.1
 - [react](https://www.npmjs.com/package/react): ^18
 - [react-big-calendar](https://www.npmjs.com/package/react-big-calendar): ^1.15.0
 - [react-day-picker](https://www.npmjs.com/package/react-day-picker): 8.10.1
@@ -365,28 +333,16 @@ Useful resources and dependencies that are used in Jira Clone.
 - [react-icons](https://www.npmjs.com/package/react-icons): ^5.3.0
 - [react-use](https://www.npmjs.com/package/react-use): ^17.5.1
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
-- [sonner](https://www.npmjs.com/package/sonner): ^1.5.0
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^2.5.4
+- [sonner](https://www.npmjs.com/package/sonner): ^2.0.1
+- [sort-classes](https://www.npmjs.com/package/sort-classes): npm:prettier-plugin-tailwindcss
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.0.1
+- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
+- [tidy-imports](https://www.npmjs.com/package/tidy-imports): npm:@trivago/prettier-plugin-sort-imports
+- [typescript](https://www.npmjs.com/package/typescript): ^5
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.0
 - [zod](https://www.npmjs.com/package/zod): ^3.23.8
-- [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.25.9
-- [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^4.3.0
-- [@types/node](https://www.npmjs.com/package/@types/node): ^20
-- [@types/react](https://www.npmjs.com/package/@types/react): ^18
-- [@types/react-big-calendar](https://www.npmjs.com/package/@types/react-big-calendar): ^1.15.0
-- [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^18
-- [eslint](https://www.npmjs.com/package/eslint): ^8
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 14.2.15
-- [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^9.1.0
-- [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
-- [postcss](https://www.npmjs.com/package/postcss): ^8
-- [prettier](https://www.npmjs.com/package/prettier): ^3.3.3
-- [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.6.8
-- [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
-- [tidy-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): npm:@trivago/prettier-plugin-sort-imports
-- [sort-classes](https://www.npmjs.com/package/prettier-plugin-tailwindcss): npm:prettier-plugin-tailwindcss
-- [typescript](https://www.npmjs.com/package/typescript): ^5
+
 <!--- DEPENDENCIES_END --->
 
 ## :coffee: Buy Me a Coffee
