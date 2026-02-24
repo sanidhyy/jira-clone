@@ -49,11 +49,55 @@ jira-clone/
   |- public/
   |- src/
     |-- app/
+      |--- (auth)/
+      |--- (dashboard)/
+      |--- (standalone)/
+      |--- api/
+      |--- apple-icon.png
+      |--- error.tsx
+      |--- favicon.ico
+      |--- globals.css
+      |--- icon1.png
+      |--- icon2.png
+      |--- layout.tsx
+      |--- not-found.tsx
     |-- components/
+      |--- ui/
+      |--- analytics-card.tsx
+      |--- analytics.tsx
+      |--- date-picker.tsx
+      |--- dotted-separator.tsx
+      |--- logo.tsx
+      |--- mobile-sidebar.tsx
+      |--- modal-provider.tsx
+      |--- navbar.tsx
+      |--- navigation.tsx
+      |--- page-error.tsx
+      |--- page-loader.tsx
+      |--- projects.tsx
+      |--- query-provider.tsx
+      |--- responsive-modal.tsx
+      |--- sidebar.tsx
+      |--- source-code.tsx
+      |--- workspaces-switcher.tsx
     |-- config/
+      |--- db.ts
+      |--- index.ts
     |-- features/
+      |--- auth/
+      |--- members/
+      |--- projects/
+      |--- tasks/
+      |--- workspaces/
     |-- hooks/
+      |--- use-confirm.tsx
+      |--- use-debounce.ts
     |-- lib/
+      |--- appwrite.ts
+      |--- hono.ts
+      |--- oauth.ts
+      |--- session-middleware.ts
+      |--- utils.ts
   |- .env.example
   |- .env/.env.local
   |- .eslintrc.json
