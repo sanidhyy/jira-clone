@@ -317,7 +317,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
 - [hono](https://www.npmjs.com/package/hono): ^4.6.7
-- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.564.0
+- [lucide-react](https://www.npmjs.com/package/lucide-react): ^0.575.0
 - [next](https://www.npmjs.com/package/next): 14.2.35
 - [next-themes](https://www.npmjs.com/package/next-themes): ^0.4.3
 - [node-appwrite](https://www.npmjs.com/package/node-appwrite): ^17.0.0
