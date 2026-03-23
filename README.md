@@ -352,7 +352,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [@types/react](https://www.npmjs.com/package/@types/react): ^18
 - [@types/react-big-calendar](https://www.npmjs.com/package/@types/react-big-calendar): ^1.15.0
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^18
-- [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.39
+- [@vercel/config](https://www.npmjs.com/package/@vercel/config): ^0.0.41
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority): ^0.7.0
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
