@@ -381,7 +381,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.0.1
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
-- [typescript](https://www.npmjs.com/package/typescript): ^5
+- [typescript](https://www.npmjs.com/package/typescript): ^6
 - [vaul](https://www.npmjs.com/package/vaul): ^1.1.0
 - [zod](https://www.npmjs.com/package/zod): ^3.23.8
 
