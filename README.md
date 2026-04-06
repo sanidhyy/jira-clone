@@ -357,7 +357,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
 - [eslint](https://www.npmjs.com/package/eslint): ^10
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.1
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.2
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
 - [hono](https://www.npmjs.com/package/hono): ^4.6.7
