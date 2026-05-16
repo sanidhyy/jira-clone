@@ -331,7 +331,7 @@ Useful resources and dependencies that are used in Jira Clone.
 <!--- DEPENDENCIES_START --->
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^7.25.9
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^18.0.1
-- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.7.0
+- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.8.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.9.0
 - [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.1.1
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.2
@@ -360,7 +360,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.6
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
-- [hono](https://www.npmjs.com/package/hono): ^4.6.7
+- [hono](https://www.npmjs.com/package/hono): ^4.12.19
 - [lucide-react](https://www.npmjs.com/package/lucide-react): ^1.7.0
 - [next](https://www.npmjs.com/package/next): 14.2.35
 - [next-themes](https://www.npmjs.com/package/next-themes): ^0.4.3
