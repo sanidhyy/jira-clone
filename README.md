@@ -348,7 +348,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.59.16
 - [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^8.20.5
 - [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^6.0.0
-- [@types/node](https://www.npmjs.com/package/@types/node): ^25
+- [@types/node](https://www.npmjs.com/package/@types/node): ^26
 - [@types/react](https://www.npmjs.com/package/@types/react): ^18
 - [@types/react-big-calendar](https://www.npmjs.com/package/@types/react-big-calendar): ^1.15.0
 - [@types/react-dom](https://www.npmjs.com/package/@types/react-dom): ^18
