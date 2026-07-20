@@ -331,7 +331,7 @@ Useful resources and dependencies that are used in Jira Clone.
 <!--- DEPENDENCIES_START --->
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.1
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^18.0.1
-- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.8.0
+- [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.9.0
 - [@hookform/resolvers](https://www.npmjs.com/package/@hookform/resolvers): ^3.9.0
 - [@radix-ui/react-avatar](https://www.npmjs.com/package/@radix-ui/react-avatar): ^1.1.1
 - [@radix-ui/react-dialog](https://www.npmjs.com/package/@radix-ui/react-dialog): ^1.1.2
