@@ -44,7 +44,6 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
-
 ```bash
 jira-clone/
   |- public/
@@ -105,17 +104,17 @@ jira-clone/
   |- .gitignore
   |- .prettierrc.json
   |- .prettierrc.mjs
-  |- bun.lockb
   |- components.json
   |- environment.d.ts
   |- next.config.mjs
   |- package.json
+  |- pnpm-lock.yaml
+  |- pnpm-workspace.yaml
   |- postcss.config.mjs
   |- tailwind.config.ts
   |- tsconfig.json
   |- vercel.ts
 ```
-
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -332,7 +331,6 @@ Useful resources and dependencies that are used in Jira Clone.
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
 
 <!--- DEPENDENCIES_START --->
-
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.1
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^18.0.1
 - [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.9.0
@@ -350,7 +348,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [@radix-ui/react-tabs](https://www.npmjs.com/package/@radix-ui/react-tabs): ^1.1.1
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.1.0
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.59.16
-- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^8.20.5
+- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^9.0.0
 - [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^6.0.0
 - [@types/node](https://www.npmjs.com/package/@types/node): ^26
 - [@types/react](https://www.npmjs.com/package/@types/react): ^18
@@ -361,7 +359,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [clsx](https://www.npmjs.com/package/clsx): ^2.1.1
 - [date-fns](https://www.npmjs.com/package/date-fns): ^4.1.0
 - [eslint](https://www.npmjs.com/package/eslint): ^10
-- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.3.0
+- [eslint-config-next](https://www.npmjs.com/package/eslint-config-next): 16.2.12
 - [eslint-config-prettier](https://www.npmjs.com/package/eslint-config-prettier): ^10.0.1
 - [eslint-plugin-prettier](https://www.npmjs.com/package/eslint-plugin-prettier): ^5.2.1
 - [hono](https://www.npmjs.com/package/hono): ^4.12.19
