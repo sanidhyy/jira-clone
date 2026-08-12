@@ -1,7 +1,7 @@
 import { zValidator } from '@hono/zod-validator';
 import { endOfMonth, startOfMonth, subMonths } from 'date-fns';
 import { Hono } from 'hono';
-import { ID, type Models, Query } from 'node-appwrite';
+import { ID, Query } from 'node-appwrite';
 import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID, WORKSPACES_ID } from '@/config/db';
@@ -26,12 +26,12 @@ const app = new Hono()
 
     const workspaceIds = members.documents.map((member) => member.workspaceId);
 
-    const workspaces = await databases.listDocuments(DATABASE_ID, WORKSPACES_ID, [
+    const workspaces = await databases.listDocuments<Workspace>(DATABASE_ID, WORKSPACES_ID, [
       Query.contains('$id', workspaceIds),
       Query.orderDesc('$createdAt'),
     ]);
 
-    const workspacesWithImages: Models.Document[] = await Promise.all(
+    const workspacesWithImages: Workspace[] = await Promise.all(
       workspaces.documents.map(async (workspace) => {
         let imageUrl: string | undefined = undefined;
 

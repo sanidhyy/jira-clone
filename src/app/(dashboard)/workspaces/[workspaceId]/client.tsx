@@ -19,7 +19,7 @@ import { useCreateProjectModal } from '@/features/projects/hooks/use-create-proj
 import type { Project } from '@/features/projects/types';
 import { useGetTasks } from '@/features/tasks/api/use-get-tasks';
 import { useCreateTaskModal } from '@/features/tasks/hooks/use-create-task-modal';
-import type { Task } from '@/features/tasks/types';
+import type { PopulatedTask } from '@/features/tasks/types';
 import { useGetWorkspaceAnalytics } from '@/features/workspaces/api/use-get-workspace-analytics';
 import { useWorkspaceId } from '@/features/workspaces/hooks/use-workspace-id';
 
@@ -50,7 +50,7 @@ export const WorkspaceIdClient = () => {
 };
 
 interface TaskListProps {
-  data: Task[];
+  data: PopulatedTask[];
   total: number;
 }
 

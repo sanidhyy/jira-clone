@@ -44,6 +44,7 @@
 Here is the folder structure of this app.
 
 <!--- FOLDER_STRUCTURE_START --->
+
 ```bash
 jira-clone/
   |- public/
@@ -114,6 +115,7 @@ jira-clone/
   |- tsconfig.json
   |- vercel.ts
 ```
+
 <!--- FOLDER_STRUCTURE_END --->
 
 <br />
@@ -295,9 +297,9 @@ For each collection:
 
 ---
 
-14. Install Project Dependencies using `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps` or `bun install --legacy-peer-deps`.
+14. Install Project Dependencies using `npm install --legacy-peer-deps` or `yarn install --legacy-peer-deps` or `pnpm install --legacy-peer-deps`.
 
-15. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `yarn dev` or `bun dev`.
+15. Now app is fully configured 👍 and you can start using this app using either one of `npm run dev` or `yarn dev` or `pnpm dev`.
 
 **NOTE:** Please make sure to keep your API keys and configuration values secure and do not expose them publicly.
 
@@ -328,7 +330,9 @@ You might encounter some bugs while using this app. You are more than welcome to
 Useful resources and dependencies that are used in Jira Clone.
 
 - Thanks to CodeWithAntonio: https://codewithantonio.com/
+
 <!--- DEPENDENCIES_START --->
+
 - [@babel/eslint-parser](https://www.npmjs.com/package/@babel/eslint-parser): ^8.0.1
 - [@hello-pangea/dnd](https://www.npmjs.com/package/@hello-pangea/dnd): ^18.0.1
 - [@hono/zod-validator](https://www.npmjs.com/package/@hono/zod-validator): ^0.9.0

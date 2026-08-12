@@ -5,14 +5,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MemberAvatar } from '@/features/members/components/member-avatar';
 import { useEditTaskModal } from '@/features/tasks/hooks/use-edit-task-modal';
-import type { Task } from '@/features/tasks/types';
+import type { PopulatedTask } from '@/features/tasks/types';
 import { snakeCaseToTitleCase } from '@/lib/utils';
 
 import { OverviewProperty } from './overview-property';
 import { TaskDate } from './task-date';
 
 interface TaskOverviewProps {
-  task: Task;
+  task: PopulatedTask;
 }
 
 export const TaskOverview = ({ task }: TaskOverviewProps) => {

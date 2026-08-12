@@ -1,21 +1,23 @@
 'use client';
 
-import type { ColumnDef } from '@tanstack/react-table';
+import { createColumnHelper } from '@tanstack/react-table';
 import { ArrowUpDown, MoreVertical } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MemberAvatar } from '@/features/members/components/member-avatar';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
-import type { Task } from '@/features/tasks/types';
+import type { PopulatedTask } from '@/features/tasks/types';
 import { snakeCaseToTitleCase } from '@/lib/utils';
 
+import { type DataTableFeatures } from './data-table-features';
 import { TaskActions } from './task-actions';
 import { TaskDate } from './task-date';
 
-export const columns: ColumnDef<Task>[] = [
-  {
-    accessorKey: 'name',
+const columnHelper = createColumnHelper<DataTableFeatures, PopulatedTask>();
+
+export const columns = columnHelper.columns([
+  columnHelper.accessor('name', {
     header: ({ column }) => {
       return (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -29,9 +31,8 @@ export const columns: ColumnDef<Task>[] = [
 
       return <p className="line-clamp-1">{name}</p>;
     },
-  },
-  {
-    accessorKey: 'project',
+  }),
+  columnHelper.accessor('project', {
     header: ({ column }) => {
       return (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -51,9 +52,8 @@ export const columns: ColumnDef<Task>[] = [
         </div>
       );
     },
-  },
-  {
-    accessorKey: 'assignee',
+  }),
+  columnHelper.accessor('assignee', {
     header: ({ column }) => {
       return (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -73,9 +73,8 @@ export const columns: ColumnDef<Task>[] = [
         </div>
       );
     },
-  },
-  {
-    accessorKey: 'dueDate',
+  }),
+  columnHelper.accessor('dueDate', {
     header: ({ column }) => {
       return (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -89,9 +88,8 @@ export const columns: ColumnDef<Task>[] = [
 
       return <TaskDate value={dueDate} />;
     },
-  },
-  {
-    accessorKey: 'status',
+  }),
+  columnHelper.accessor('status', {
     header: ({ column }) => {
       return (
         <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
@@ -105,8 +103,8 @@ export const columns: ColumnDef<Task>[] = [
 
       return <Badge variant={status}>{snakeCaseToTitleCase(status)}</Badge>;
     },
-  },
-  {
+  }),
+  columnHelper.display({
     id: 'actions',
     cell: ({ row }) => {
       const id = row.original.$id;
@@ -120,5 +118,5 @@ export const columns: ColumnDef<Task>[] = [
         </TaskActions>
       );
     },
-  },
-];
+  }),
+]);
