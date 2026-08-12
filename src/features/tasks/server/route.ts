@@ -1,13 +1,14 @@
 import { zValidator } from '@hono/zod-validator';
 import { Hono } from 'hono';
-import { ID, Models, Query } from 'node-appwrite';
+import { ID, Query } from 'node-appwrite';
 import { z } from 'zod';
 
 import { DATABASE_ID, IMAGES_BUCKET_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from '@/config/db';
+import type { Member } from '@/features/members/types';
 import { getMember } from '@/features/members/utils';
 import type { Project } from '@/features/projects/types';
 import { createTaskSchema } from '@/features/tasks/schema';
-import { type Task, TaskStatus } from '@/features/tasks/types';
+import { type PopulatedTask, type Task, TaskStatus } from '@/features/tasks/types';
 import { createAdminClient } from '@/lib/appwrite';
 import { sessionMiddleware } from '@/lib/session-middleware';
 
@@ -67,13 +68,13 @@ const app = new Hono()
         projectIds.length > 0 ? [Query.contains('$id', projectIds)] : [],
       );
 
-      const members = await databases.listDocuments(
+      const members = await databases.listDocuments<Member>(
         DATABASE_ID,
         MEMBERS_ID,
         assigneeIds.length > 0 ? [Query.contains('$id', assigneeIds)] : [],
       );
 
-      const assignees = await Promise.all(
+      const assignees: Member[] = await Promise.all(
         members.documents.map(async (member) => {
           const user = await users.get(member.userId);
 
@@ -85,28 +86,30 @@ const app = new Hono()
         }),
       );
 
-      const populatedTasks: (Models.Document & Task)[] = await Promise.all(
-        tasks.documents.map(async (task) => {
-          const project = projects.documents.find((project) => project.$id === task.projectId);
-          const assignee = assignees.find((assignee) => assignee.$id === task.assigneeId);
+      const populatedTasks: PopulatedTask[] = [];
 
-          let imageUrl: string | undefined = undefined;
+      for (const task of tasks.documents) {
+        const project = projects.documents.find((project) => project.$id === task.projectId);
+        const assignee = assignees.find((assignee) => assignee.$id === task.assigneeId);
 
-          if (project?.imageId) {
-            const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, project.imageId);
-            imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
-          }
+        if (!project || !assignee) continue;
 
-          return {
-            ...task,
-            project: {
-              ...project,
-              imageUrl,
-            },
-            assignee,
-          };
-        }),
-      );
+        let imageUrl: string | undefined = undefined;
+
+        if (project.imageId) {
+          const arrayBuffer = await storage.getFileView(IMAGES_BUCKET_ID, project.imageId);
+          imageUrl = `data:image/png;base64,${Buffer.from(arrayBuffer).toString('base64')}`;
+        }
+
+        populatedTasks.push({
+          ...task,
+          project: {
+            ...project,
+            imageUrl,
+          },
+          assignee,
+        });
+      }
 
       return ctx.json({
         data: {
@@ -137,22 +140,24 @@ const app = new Hono()
 
     const project = await databases.getDocument<Project>(DATABASE_ID, PROJECTS_ID, task.projectId);
 
-    const member = await databases.getDocument(DATABASE_ID, MEMBERS_ID, task.assigneeId);
+    const member = await databases.getDocument<Member>(DATABASE_ID, MEMBERS_ID, task.assigneeId);
 
     const user = await users.get(member.userId);
 
-    const assignee = {
+    const assignee: Member = {
       ...member,
       name: user.name,
       email: user.email,
     };
 
+    const populatedTask: PopulatedTask = {
+      ...task,
+      project,
+      assignee,
+    };
+
     return ctx.json({
-      data: {
-        ...task,
-        project,
-        assignee,
-      },
+      data: populatedTask,
     });
   })
   .post('/', sessionMiddleware, zValidator('json', createTaskSchema), async (ctx) => {
@@ -185,7 +190,7 @@ const app = new Hono()
       status,
       workspaceId,
       projectId,
-      dueDate,
+      dueDate: dueDate.toISOString(),
       assigneeId,
       position: newPosition,
     });
@@ -215,7 +220,7 @@ const app = new Hono()
       name,
       status,
       projectId,
-      dueDate,
+      dueDate: dueDate instanceof Date ? dueDate.toISOString() : dueDate,
       assigneeId,
       description,
     });

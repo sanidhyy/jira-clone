@@ -6,7 +6,7 @@ import { Calendar, dateFnsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { Button } from '@/components/ui/button';
-import type { Task } from '@/features/tasks/types';
+import type { PopulatedTask } from '@/features/tasks/types';
 
 import './data-calendar.css';
 import { EventCard } from './event-card';
@@ -24,7 +24,7 @@ const localizer = dateFnsLocalizer({
 });
 
 interface DataCalendarProps {
-  data: Task[];
+  data: PopulatedTask[];
 }
 
 interface CustomToolbarProps {

@@ -1,7 +1,7 @@
 import { DragDropContext, Draggable, type DropResult, Droppable } from '@hello-pangea/dnd';
 import { useCallback, useEffect, useState } from 'react';
 
-import { type Task, TaskStatus } from '@/features/tasks/types';
+import { type PopulatedTask, TaskStatus } from '@/features/tasks/types';
 
 import { KanbanCard } from './kanban-card';
 import { KanbanColumnHeader } from './kanban-column-header';
@@ -9,11 +9,11 @@ import { KanbanColumnHeader } from './kanban-column-header';
 const boards: TaskStatus[] = [TaskStatus.BACKLOG, TaskStatus.TODO, TaskStatus.IN_PROGRESS, TaskStatus.IN_REVIEW, TaskStatus.DONE];
 
 type TasksState = {
-  [key in TaskStatus]: Task[];
+  [key in TaskStatus]: PopulatedTask[];
 };
 
 interface DataKanbanProps {
-  data: Task[];
+  data: PopulatedTask[];
   onChange: (tasks: { $id: string; status: TaskStatus; position: number }[]) => void;
 }
 

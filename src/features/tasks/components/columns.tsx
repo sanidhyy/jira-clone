@@ -7,14 +7,14 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MemberAvatar } from '@/features/members/components/member-avatar';
 import { ProjectAvatar } from '@/features/projects/components/project-avatar';
-import type { Task } from '@/features/tasks/types';
+import type { PopulatedTask } from '@/features/tasks/types';
 import { snakeCaseToTitleCase } from '@/lib/utils';
 
 import { type DataTableFeatures } from './data-table-features';
 import { TaskActions } from './task-actions';
 import { TaskDate } from './task-date';
 
-const columnHelper = createColumnHelper<DataTableFeatures, Task>();
+const columnHelper = createColumnHelper<DataTableFeatures, PopulatedTask>();
 
 export const columns = columnHelper.columns([
   columnHelper.accessor('name', {
