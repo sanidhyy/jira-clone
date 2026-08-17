@@ -13,7 +13,7 @@ importers:
         version: 18.0.1(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hono/zod-validator':
         specifier: ^0.9.0
-        version: 0.9.0(hono@4.13.1)(zod@3.25.76)
+        version: 0.9.0(hono@4.13.2)(zod@3.25.76)
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.10.0(react-hook-form@7.85.0(react@18.3.1))
@@ -72,8 +72,8 @@ importers:
         specifier: ^4.1.0
         version: 4.4.0
       hono:
-        specifier: ^4.12.19
-        version: 4.13.1
+        specifier: ^4.13.2
+        version: 4.13.2
       lucide-react:
         specifier: ^1.7.0
         version: 1.31.0(react@18.3.1)
@@ -1844,8 +1844,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.13.1:
-    resolution: {integrity: sha512-kdJoFVv2xmayw6cY09H7AbMJMt8Jn5jdlEdXsP7AGBdF2DIptVlKlOLKXP41yPip4/a3yQPv9gVcJYI8YY04dw==}
+  hono@4.13.2:
+    resolution: {integrity: sha512-JydRilDRkYBQMt9qR9U92mXxmbGqsqSn/IKOrh4e7/gEbn+0zSr8igTu0obwJoNGN4sez28DIql7FBHWydoJpA==}
     engines: {node: '>=16.9.0'}
 
   hyphenate-style-name@1.1.0:
@@ -3225,9 +3225,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@hono/zod-validator@0.9.0(hono@4.13.1)(zod@3.25.76)':
+  '@hono/zod-validator@0.9.0(hono@4.13.2)(zod@3.25.76)':
     dependencies:
-      hono: 4.13.1
+      hono: 4.13.2
       zod: 3.25.76
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.85.0(react@18.3.1))':
@@ -4808,7 +4808,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.13.1: {}
+  hono@4.13.2: {}
 
   hyphenate-style-name@1.1.0: {}
 
