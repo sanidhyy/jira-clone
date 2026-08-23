@@ -267,6 +267,14 @@ For each collection:
 
 ---
 
+### :raising_hand: Need Help?
+
+If you run into issues during installation or setup:
+
+- **GitHub Discussions** — [Open a Q&A discussion](https://github.com/sanidhyy/jira-clone/discussions/new?category=q-a) for setup and troubleshooting help.
+- **Email** — [sanidhyyy@gmail.com](mailto:sanidhyyy@gmail.com)
+- **Discord** — `sanidhyy`
+
 ## 12. Configure OAuth with Google
 
 1. Go to the **Auth** tab in Appwrite > **Settings**.
