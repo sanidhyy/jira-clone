@@ -267,7 +267,7 @@ For each collection:
 
 ---
 
-## 12. Configure OAuth with Google
+### 12. Configure OAuth with Google
 
 1. Go to the **Auth** tab in Appwrite > **Settings**.
 2. Enable **Google** and copy the provided **Redirect URI**.
@@ -280,7 +280,7 @@ For each collection:
 
 ---
 
-## 13. Configure OAuth with GitHub
+### 13. Configure OAuth with GitHub
 
 1. Go to the **Auth** tab in Appwrite > **Settings**.
 2. Enable **GitHub** and copy the provided **Redirect URI**.
