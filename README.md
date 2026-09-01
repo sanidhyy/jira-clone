@@ -383,7 +383,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [react-big-calendar](https://www.npmjs.com/package/react-big-calendar): ^1.15.0
 - [react-day-picker](https://www.npmjs.com/package/react-day-picker): 8.10.1
 - [react-dom](https://www.npmjs.com/package/react-dom): ^18
-- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.53.1
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form): ^7.86.0
 - [react-icons](https://www.npmjs.com/package/react-icons): ^5.3.0
 - [react-use](https://www.npmjs.com/package/react-use): ^17.5.1
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
