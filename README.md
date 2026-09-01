@@ -356,7 +356,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [@radix-ui/react-tabs](https://www.npmjs.com/package/@radix-ui/react-tabs): ^1.1.1
 - [@radix-ui/react-visually-hidden](https://www.npmjs.com/package/@radix-ui/react-visually-hidden): ^1.1.0
 - [@tanstack/react-query](https://www.npmjs.com/package/@tanstack/react-query): ^5.59.16
-- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^9.0.0
+- [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table): ^9.2.3
 - [@trivago/prettier-plugin-sort-imports](https://www.npmjs.com/package/@trivago/prettier-plugin-sort-imports): ^6.0.0
 - [@types/node](https://www.npmjs.com/package/@types/node): ^26
 - [@types/react](https://www.npmjs.com/package/@types/react): ^18
