@@ -388,7 +388,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [react-use](https://www.npmjs.com/package/react-use): ^17.5.1
 - [server-only](https://www.npmjs.com/package/server-only): ^0.0.1
 - [sonner](https://www.npmjs.com/package/sonner): ^2.0.1
-- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.0.1
+- [tailwind-merge](https://www.npmjs.com/package/tailwind-merge): ^3.7.0
 - [tailwindcss](https://www.npmjs.com/package/tailwindcss): ^3.4.1
 - [tailwindcss-animate](https://www.npmjs.com/package/tailwindcss-animate): ^1.0.7
 - [typescript](https://www.npmjs.com/package/typescript): ^6
