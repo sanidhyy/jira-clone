@@ -377,7 +377,7 @@ Useful resources and dependencies that are used in Jira Clone.
 - [node-appwrite](https://www.npmjs.com/package/node-appwrite): ^17.0.0
 - [nuqs](https://www.npmjs.com/package/nuqs): 1.19.1
 - [postcss](https://www.npmjs.com/package/postcss): ^8
-- [prettier](https://www.npmjs.com/package/prettier): ^3.3.3
+- [prettier](https://www.npmjs.com/package/prettier): ^3.9.9
 - [prettier-plugin-tailwindcss](https://www.npmjs.com/package/prettier-plugin-tailwindcss): ^0.8.0
 - [react](https://www.npmjs.com/package/react): ^18
 - [react-big-calendar](https://www.npmjs.com/package/react-big-calendar): ^1.15.0
