@@ -13,7 +13,7 @@ importers:
         version: 18.0.1(@types/react@18.3.31)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@hono/zod-validator':
         specifier: ^0.9.1
-        version: 0.9.1(hono@4.13.13)(zod@3.25.76)
+        version: 0.9.1(hono@4.13.14)(zod@3.25.76)
       '@hookform/resolvers':
         specifier: ^3.9.0
         version: 3.10.0(react-hook-form@7.91.0(@types/react@18.3.31)(react@18.3.1))
@@ -72,8 +72,8 @@ importers:
         specifier: ^4.1.0
         version: 4.4.0
       hono:
-        specifier: ^4.13.12
-        version: 4.13.13
+        specifier: ^4.13.14
+        version: 4.13.14
       lucide-react:
         specifier: ^1.65.0
         version: 1.65.0(@types/react@18.3.31)(react@18.3.1)
@@ -1872,8 +1872,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.13.13:
-    resolution: {integrity: sha512-CQ46U0ZkAGmbT/4UxdzzGJpacP2IeKgY4a5/tOI9AABbpOMfK739wfDXmv1usCk+3RkKj1hQy4/fjhiwa2xlrA==}
+  hono@4.13.14:
+    resolution: {integrity: sha512-yhRLQ21U6qa9Hsu2N7Qcbh8tE+WKEcoErjIo56LeSGiGXGp9sA7UpE86Ui9uexb61KakiGwuHMn2QdV7w6i6kQ==}
     engines: {node: '>=16.9.0'}
 
   hookified@1.15.1:
@@ -3278,9 +3278,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  '@hono/zod-validator@0.9.1(hono@4.13.13)(zod@3.25.76)':
+  '@hono/zod-validator@0.9.1(hono@4.13.14)(zod@3.25.76)':
     dependencies:
-      hono: 4.13.13
+      hono: 4.13.14
       zod: 3.25.76
 
   '@hookform/resolvers@3.10.0(react-hook-form@7.91.0(@types/react@18.3.31)(react@18.3.1))':
@@ -4890,7 +4890,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.13.13: {}
+  hono@4.13.14: {}
 
   hookified@1.15.1: {}
 
